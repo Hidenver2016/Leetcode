@@ -33,8 +33,8 @@ class Solution:
         self.anti_diag = [False] * (2 * n) # 次对角线用row-i+n, 我觉得这个n就是一个偏置，其实直接搞row-i也是对的
         self.solutions = [] #这个地方因为行不用考虑，一行只有一个皇后，所以依次排列的就是列的位置
         self.solveNQueensRecu([], 0, n)
-        for ch in self.solutions:
-            for sh in ch:
+        for ch in self.solutions: # 有几个解
+            for sh in ch: # 解的每一行
                 print (sh)                
             print ('\n')
         return len(self.solutions)
@@ -71,7 +71,7 @@ class Solution2:
                     self.solveNQueensRecu(solution + [i], row + 1, n)
 
 if __name__ == "__main__":
-    results = Solution().solveNQueens(15)
+    results = Solution().solveNQueens(4)
     print (results)
     
     
