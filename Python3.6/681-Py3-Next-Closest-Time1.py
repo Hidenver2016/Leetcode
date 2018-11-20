@@ -23,6 +23,8 @@ Input: "23:59"
 Output: "22:22"
 Explanation: The next closest time choosing from digits 2, 3, 5, 9, is 22:22. 
 It may be assumed that the returned time is next day's time since it is smaller than the input time numerically.
+Time: O(1)
+Space: O(1)
 '''
 
 class Solution(object):
@@ -35,15 +37,8 @@ class Solution(object):
             t = i % 1440
             h, m = t // 60, t % 60
             result = "%02d:%02d" %(h,m)
-            if set(result) <= set(time):
+            if set(result) <= set(time): # 这个地方表示集合从属关系
                 return result
-            
-            
-        
-            
-        
-        
-        
         
         
 if __name__ == "__main__":

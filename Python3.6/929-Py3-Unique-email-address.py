@@ -40,6 +40,9 @@ Note:
 1 <= emails.length <= 100
 Each emails[i] contains exactly one '@' character.
 
+Time: O(n*l)
+Space: O(n*l)
+
 '''
 class Solution(object):
     def emailpro(self, emails):

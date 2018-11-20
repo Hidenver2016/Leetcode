@@ -51,6 +51,10 @@ Note:
 1 <= tree.length <= 40000
 0 <= tree[i] < tree.length
 
+
+Time: O(n)
+Space: O(1)
+
 """
 import collections
 class solution(object):
