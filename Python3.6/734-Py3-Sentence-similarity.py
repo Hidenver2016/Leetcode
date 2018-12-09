@@ -41,7 +41,7 @@ The length of each words[i] and pairs[i][j] will be in the range [1, 20].
 class Solution0:
     def areSentencesSimilar(self, words1, words2, pairs):
         if len(words1) != len(words2): return False
-        lookup = set(map(tuple, pairs))
+        lookup = set(map(tuple, pairs)) #去掉重复
         return all(w1 == w2 or (w1, w2) in lookup or (w2, w1) in lookup for w1, w2 in zip(words1, words2))
     
 class Solution1:
