@@ -15,7 +15,8 @@ Input:
 Output: 3
 Hint: The number of elements in the given matrix will not exceed 10,000.
 http://www.cnblogs.com/grandyang/p/6900866.html
-如果i是从0到m+n-1之间遍历，j是在i到0之间遍历，那么对角线的数字的坐标就为(i-j, j)，逆对角线的坐标就为(m-1-i+j, j)
+如果i是从0到m+n-1之间遍历，j是在i到0之间遍历，那么对角线的数字的坐标就为(i-j, j)，
+逆对角线的坐标就为(m-1-i+j, j)，m = len(M)行数
 
 重点： 掌握dp的方法，不用去一个个的暴力搜索，在dp中上一步的搜索结果被记住，下一次的时候直接调用
 
@@ -23,7 +24,7 @@ http://www.cnblogs.com/grandyang/p/6900866.html
 # Time:  O(m * n)
 # Space: O(n)
 
-class Solution(object):
+class Solution(object):#优
     def longestLine(self, M):
         """
         :type M: List[List[int]]

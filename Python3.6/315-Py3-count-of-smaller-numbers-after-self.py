@@ -15,6 +15,7 @@ Created on Sun Oct  7 15:33:33 2018
 
 """
 
+
 class Solution2(object):
     def countSmaller(self, nums):
         """
@@ -25,7 +26,7 @@ class Solution2(object):
             start, end = 0, len(A) - 1
             while start <= end:
                 mid = int(start + (end - start) / 2)
-                if compare(target, A[mid]):
+                if compare(target, A[mid]): # compare is <=
                     end = mid - 1
                 else:
                     start = mid + 1
@@ -57,11 +58,11 @@ class Solution2(object):
         # Count the smaller elements after the number.
         ans, bit= [0] * len(nums), BIT(len(nums) + 1)
         for i in reversed(range(len(nums))):
-            print("\n", "This is round %d", i)
+#            print("\n", "This is round %d", i)
             ans[i] = bit.query(places[i])
-            print ("ans is", ans)
+#            print ("ans is", ans)
             bit.add(places[i] + 1, 1)
-            print("The new bit._BIT__bit is", bit._BIT__bit)
+#            print("The new bit._BIT__bit is", bit._BIT__bit)
         return ans
     
 if __name__ == "__main__":
