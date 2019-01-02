@@ -48,6 +48,12 @@ I try each possible x in the range (except hi, which is pointless because hi-1 c
 and provides more information), calculate how much I need when using that x, 
 and take the minimum of those amounts.
 
+计算局部最大值local_max = k + max(dp[j][k - 1], dp[k + 1][i])，这个正好是将该区间在每一个位置都分为两段，
+然后取当前位置的花费加上左右两段中较大的花费之和为局部最大值，为啥要取两者之间的较大值呢，
+因为我们要cover所有的情况，就得取最坏的情况， 然后更新全局最小值。
+
+那么我们的策略是用k来遍历所有的数字，然后再根据k分成的左右两个区间，取其中的较大cost加上k。
+
 Bottom-up dynamic programming:
     
 # Time:  O(n^2)
@@ -57,11 +63,11 @@ Bottom-up dynamic programming:
 
 class Solution:
     def getMoneyAmount(self, n):
-        need = [[0] * (n+1) for _ in range(n+1)]
+        dp = [[0] * (n+1) for _ in range(n+1)]# dp[i][j]表示从数字i到j之间猜中任意一个数字最少需要花费
         for lo in range(n, 0, -1):
             for hi in range(lo+1, n+1):
-                need[lo][hi] = min(x + max(need[lo][x-1], need[x+1][hi]) for x in range(lo, hi))
-        return need[1][n]
+                dp[lo][hi] = min(x + max(dp[lo][x-1], dp[x+1][hi]) for x in range(lo, hi))
+        return dp[1][n]
     
 if __name__ ==  "__main__":
     print(Solution().getMoneyAmount(10))
