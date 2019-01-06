@@ -24,6 +24,7 @@ Every row in the matrix is viewed as the ground with some buildings on it.
 The building height is the count of consecutive 1s from that row to above rows. 
 The rest is then the same as this solution for largest rectangle in histogram
 关键：此题比较难，技巧比较多。注意高度是随每行的遍历而累加，
+此题需要和84题联合看，区别就是每一行row的height是活的
 """
 
 class Solution1:   

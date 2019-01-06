@@ -71,7 +71,8 @@ class Solution1(object):
             for left in range(1, n - len_ + 2):#左边left 是从[1, n-len+1],最左边留一个，然后因为右边加了一个所以是n-len+1
                 right = left + len_ - 1 # 这个就是一般长为len_的序列，右边的值
                 for k in range(left, right + 1): # 最后搞这个k, k在left和right之间
-                    dp[left][right] = max(dp[left][right], dp[left][k - 1] + nums[left - 1] * nums[k] * nums[right + 1] + dp[k + 1][right])
+                    dp[left][right] = max(dp[left][right], \
+                      dp[left][k - 1] + nums[left - 1] * nums[k] * nums[right + 1] + dp[k + 1][right])
         return dp[1][n]
     
     
