@@ -45,7 +45,7 @@ class Solution(object):
         return result
 
 
-class Solution1:#dfs比较难想
+class Solution1:#dfs比较难想,这个实际上是backtracking
     def subsets(self,nums):
         self.res = []
         def dfs(nums, i, tmp):
