@@ -43,17 +43,17 @@ class Solution(object):
             for x in range(n):
                 if grid[y][x] == 1:
                     ans += 1
-                    self.__dfs(grid, x, y, n, m) #找遍所有符合要求的点
+                    self.dfs(grid, x, y, n, m) #找遍所有符合要求的点
         return ans, grid
     
-    def __dfs(self, grid, x, y, n, m):
+    def dfs(self, grid, x, y, n, m):
         if x < 0 or y < 0 or x >=n or y >= m or grid[y][x] == 0:
             return
         grid[y][x] = 0 # 找过以后置0避免重复查找
-        self.__dfs(grid, x + 1, y, n, m) #上下左右循坏查找
-        self.__dfs(grid, x - 1, y, n, m)
-        self.__dfs(grid, x, y + 1, n, m)
-        self.__dfs(grid, x, y - 1, n, m)
+        self.dfs(grid, x + 1, y, n, m) #上下左右循坏查找
+        self.dfs(grid, x - 1, y, n, m)
+        self.dfs(grid, x, y + 1, n, m)
+        self.dfs(grid, x, y - 1, n, m)
         
         
         
