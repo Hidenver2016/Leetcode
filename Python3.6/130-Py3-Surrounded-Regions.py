@@ -49,7 +49,7 @@ class Solution:
     # Capture all regions by modifying the input board in-place.
     # Do not return any value.
     def solve(self, board):
-        def dfs(x, y):
+        def dfs(x, y): #x>=len(board)是一样的
             if x<0 or x>m-1 or y<0 or y>n-1 or board[x][y]!='O':return
             board[x][y] = 'D'
             dfs(x-1, y)
@@ -65,7 +65,7 @@ class Solution:
             dfs(0, j); dfs(m-1, j)
         for i in range(m):
             for j in range(n):
-                if board[i][j] == 'O': board[i][j] == 'X'
+                if board[i][j] == 'O': board[i][j] == 'X'#这里注意，顺序千万不能反了！/
                 elif board[i][j] == 'D': board[i][j] == 'O'
 
 
@@ -92,9 +92,8 @@ class Solution1:
             bfs(j,0); bfs(j,n-1)
         for i in range(m):
             for j in range(n):
-                if board[i][j] == 'D': board[i][j] = 'O'
-                elif board[i][j] == 'O': board[i][j] = 'X'
-
+                if board[i][j] == 'O': board[i][j] == 'X'#这里注意，顺序千万不能反了！/
+                elif board[i][j] == 'D': board[i][j] == 'O'
 
 
 

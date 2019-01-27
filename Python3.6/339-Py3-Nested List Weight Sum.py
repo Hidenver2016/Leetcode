@@ -81,8 +81,8 @@ class Solution(object):
     #BFS(Breadth-First-Search)
 	#Efficiency: O(N), Space: O(N).
     def depthSum1(self, nestedList):
-        counter = 0
-        queue = [(1, e) for e in nestedList]
+        counter = 0                                              #第一个1是权重，第二个1是用来一级级相加的
+        queue = [(1, e) for e in nestedList]# 假设a=[1, [2, [3]]]，queue = [(1, 1), (1, [2, [3]])]
         while queue:
             weight, e = queue.pop(0)
             if e.isInteger():
