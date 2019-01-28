@@ -44,7 +44,7 @@ class Solution:
         """
 #        bulls = sum(map(operator.eq, secret, guess))
         bulls = sum(i == j for i, j in zip(secret, guess)) #位置和数字都对的
-        both = sum(min(secret.count(x), guess.count(x)) for x in set(guess))# 一共出现了的数字，包括位置对了的
+        both = sum(min(secret.count(x), guess.count(x)) for x in set(guess))# 一共出现了的数字（需要在secret中出现），包括位置对了的，和不对的
         return '%dA%dB' % (bulls, both - bulls)
     
 if __name__ == "__main__":
