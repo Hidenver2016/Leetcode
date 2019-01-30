@@ -48,4 +48,4 @@ class Solution(object):
         return sorted(collections.Counter(nums).items(), key=lambda a: a[1], reverse=True)[0][0]
     
 if __name__ == "__main__":
-    print(Solution().majorityElement([2,2,1,1,1,2,2]))
+    print(Solution().majorityElement([2,2,1,1,1,2,2,3,4,5,3,3,4]))

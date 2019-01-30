@@ -26,10 +26,25 @@ class Solution(object):
     # @param {string} word1
     # @param {string} word2
     # @return {integer}
+#    def shortestDistance(self, words, word1, word2):
+#        dist = float("inf")
+#        i, index1, index2 = 0, None, None
+#        while i < len(words):
+#            if words[i] == word1:
+#                index1 = i
+#            elif words[i] == word2:
+#                index2 = i
+#
+#            if index1 is not None and index2 is not None:
+#                dist = min(dist, abs(index1 - index2))#对应于多个有重复的情况，比如有两个makes
+#            i += 1
+#
+#        return dist
+#自己写的，一定要注意while的用法，因为最后的i+=1如果是在一个条件里面的话，while的i是只有满足条件才更新的    
     def shortestDistance(self, words, word1, word2):
         dist = float("inf")
         i, index1, index2 = 0, None, None
-        while i < len(words):
+        for i in range(len(words)):
             if words[i] == word1:
                 index1 = i
             elif words[i] == word2:
@@ -37,7 +52,7 @@ class Solution(object):
 
             if index1 is not None and index2 is not None:
                 dist = min(dist, abs(index1 - index2))#对应于多个有重复的情况，比如有两个makes
-            i += 1
+#            i += 1
 
         return dist
     

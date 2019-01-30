@@ -39,13 +39,13 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        return [i[0] for i in collections.Counter(nums).items() if i[1] > len(nums) / 3]
+        return [i[0] for i in collections.Counter(nums).items() if i[1] > len(nums) / 3] #这个里面i[1]是次数，i[0]是key
 
     
 """
 https://blog.csdn.net/fuxuemingzhu/article/details/51288749
 /*
-    思路：摩尔投票升级版，超过n/3的数最多只能有两个；
+    思路：摩尔投票(Moore Vote)升级版，超过n/3的数最多只能有两个；
     先选出两个候选人A,B,遍历数组，如果投A（等于A），则A的票数++;如果投B，B的票数++；
     如果A,B都不投（即与A，B都不相等）,那么检查此时是否AB中候选人的票数是否为0，如果为0,则成为新的候选人；
     如果A,B两个人的票数都不为0，那么A,B两个候选人的票数均--；
@@ -124,7 +124,7 @@ class Solution2(object):# 莫尔投票法，单个变量的,但是一定需要�
     
 if __name__ == "__main__":
     print(Solution2().majorityElement1([1,1,1,3,3,2,2,2,1,1]))
-    print(Solution2().majorityElement1([1,2,3,3,5,2,7,8,2,2,1,1]))
+    print(Solution().majorityElement2([1,2,3,3,5,2,7,8,2,2,1,1,1,1,1]))
 
 
     
