@@ -47,7 +47,7 @@ a search from the lowest border and update the points adjacent to it.
 result += max(0, height-heightMap[x][y])# 关键： height 本身在heapq中就已经最小了，而且是从外向内访问
 如果heightMap[x][y],比他还小，就可以积水。同时，由于height之前遍历的都比自己大，所以水也不可能留到其他地方去。
 
-http://www.cnblogs.com/grandyang/p/5928987.html 评论里面的解释
+http://www.cnblogs.com/grandyang/p/5928987.html 评论里面的解释.
 """
 import heapq  
 class Solution1(object):
