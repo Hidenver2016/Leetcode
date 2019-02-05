@@ -75,7 +75,7 @@ class Solution(object):
 http://www.cnblogs.com/grandyang/p/4402392.html
 """    
     
-class Solution1:
+class Solution1:#这个方法和11题非常类似，可以一起看
     def trap(self, A):
         l, r =0, len(A)-1
         level, res = 0, 0

@@ -57,8 +57,8 @@ class Solution0:#这个最容易理解，其实也是动态规划
         b1, b2 = float('-inf'), float('-inf')
         s1, s2 = 0, 0
         for p in prices:
-            b1 = max(b1, - p)
-            s1 = max(s1, b1 + p)
+            b1 = max(b1, - p)# 买
+            s1 = max(s1, b1 + p)#卖
             b2 = max(b2, s1 - p)
             s2 = max(s2, b2 + p)
             
@@ -83,13 +83,13 @@ class Solution1(object):#用这个，还可以当成第四问188的解
                 if prices[i] > prices[i - 1]:
                     _sum += prices[i] - prices[i - 1]
             return _sum
-        g = [0] * (k + 1)
-        l = [0] * (k + 1)
+        g = [0] * (k + 1)#global
+        l = [0] * (k + 1)#local
         for i in range(N - 1):
             diff = prices[i + 1] - prices[i]
             for j in range(k, 0, -1):
-                l[j] = max(g[j - 1] + max(diff, 0), l[j] + diff)
-                g[j] = max(l[j], g[j])
+                l[j] = max(g[j - 1] + max(diff, 0), l[j] + diff)#最后一次交易在最后一天卖出的最大利润，此为局部最优
+                g[j] = max(l[j], g[j])#累积的最优
         return g[-1]    
     
 class Solution2(object):#动态规划，太难了，但是可以解任意次交易

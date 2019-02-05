@@ -47,8 +47,8 @@ class Solution(object):
         for i in range(N - 1):
             diff = prices[i + 1] - prices[i]
             for j in range(k, 0, -1):
-                l[j] = max(g[j - 1] + max(diff, 0), l[j] + diff)
-                g[j] = max(l[j], g[j])
+                l[j] = max(g[j - 1] + max(diff, 0), l[j] + diff)#最后一次交易在最后一天卖出的最大利润，此为局部最优
+                g[j] = max(l[j], g[j])#累积的最优
         return g[-1]
     
     def maxProfit1(self,k, prices):#这个方法是可以解，但是下面这个二维数组会在k变大的时候崩溃，所以只能参考上面那个解

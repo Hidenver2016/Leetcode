@@ -38,7 +38,7 @@ Explanation: In this case, no transaction is done, i.e. max profit = 0.
 # Space: O(1)
 
 
-class Solution(object):
+class Solution(object):#可以交易多次
     # @param prices, a list of integer
     # @return an integer
     def maxProfit(self, prices):#这个比较容易理解，其实也是把利益分解了，因为最大的利益其实等于分开利益的和

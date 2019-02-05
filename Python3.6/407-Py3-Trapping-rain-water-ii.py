@@ -50,7 +50,7 @@ result += max(0, height-heightMap[x][y])# 关键： height 本身在heapq中就�
 http://www.cnblogs.com/grandyang/p/5928987.html 评论里面的解释.
 """
 import heapq  
-class Solution1(object):
+class Solution1(object):#看这个好了
     def trapRainWater(self, heightMap):
         if not heightMap or not heightMap[0]:return 0
           
@@ -66,23 +66,40 @@ class Solution1(object):
                     visited[i][j] = 1
         
         result = 0
-        while heap:
+        while heap:#这个堆实际上维护一个高的数组，可以理解成为水周围的墙壁
             height, i, j = heapq.heappop(heap) # 每次弹出最小的点 lowest border   
             for x, y in ((i+1, j), (i-1, j), (i, j+1), (i, j-1)): #四个方向的其他点
                 if 0 <= x < m and 0 <= y < n and not visited[x][y]:
                     result += max(0, height-heightMap[x][y])# 关键： height 本身在heapq中就已经最小了，如果heightMap[x][y],比他还小，就可以积水，
-                    heapq.heappush(heap, (max(heightMap[x][y], height), x, y))#更新
+                    heapq.heappush(heap, (max(heightMap[x][y], height), x, y))#更新，因为已经有水了，就看成一样高的
                     visited[x][y] = 1
         return result
-
-
     
+        
+    
+#import heapq    
+class Solution2:
+    def trapRainWater(self, heightMap):
+        m, n, heap, trapped = len(heightMap), len(heightMap and heightMap[0]), [], 0
+        for i in range(m):
+            for j in range(n):
+                if i in {0, m - 1} or j in {0, n - 1}:
+                    heapq.heappush(heap, (heightMap[i][j], i, j))
+                    heightMap[i][j] = -1          
+        while heap:
+            h, i, j = heapq.heappop(heap)
+            for x, y in ((i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1)):
+                if 0 < x < m - 1 and 0 < y < n - 1 and heightMap[x][y] != -1:
+                    trapped += max(h - heightMap[x][y], 0)
+                    heapq.heappush(heap, (max(heightMap[x][y], h), x, y))
+                    heightMap[x][y] = -1
+        return trapped
+
 if __name__ == "__main__":
-    A = [
-  [1,4,3,1,3,2],
-  [3,2,1,3,2,4],
-  [2,3,3,2,3,1]]
-    print(Solution1().trapRainWater(A))
+    A = [[1,4,3,1,3,2],
+         [3,2,1,3,2,4],
+         [2,3,3,2,3,1]]
+    print(Solution2().trapRainWater(A))
     
     
 #from heapq import heappush, heappop
@@ -127,21 +144,10 @@ if __name__ == "__main__":
 #        return trap
     
     
-##import heapq    
-#class Solution2:
-#    def trapRainWater(self, heightMap):
-#        m, n, heap, trapped = len(heightMap), len(heightMap and heightMap[0]), [], 0
-#        for i in range(m):
-#            for j in range(n):
-#                if i in {0, m - 1} or j in {0, n - 1}:
-#                    heapq.heappush(heap, (heightMap[i][j], i, j))
-#                    heightMap[i][j] = -1          
-#        while heap:
-#            h, i, j = heapq.heappop(heap)
-#            for x, y in ((i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1)):
-#                if 0 < x < m - 1 and 0 < y < n - 1 and heightMap[x][y] != -1:
-#                    trapped += max(h - heightMap[x][y], 0)
-#                    heapq.heappush(heap, (max(heightMap[x][y], h), x, y))
-#                    heightMap[x][y] = -1
-#        return trapped
-
+    
+    
+    
+    
+    
+    
+    

@@ -62,7 +62,7 @@ class Solution1(object):#这个比较好理解
         max_profit, min_price = 0, float("inf")
         for price in prices:
             min_price = min(min_price, price)
-            max_profit = max(max_profit, price - min_price)
+            max_profit = max(max_profit, price - min_price)#只能交易一次，所以用最大的max_profit来hold住
         return max_profit
     
 if __name__ == "__main__":

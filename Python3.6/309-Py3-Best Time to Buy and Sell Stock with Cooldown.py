@@ -46,10 +46,10 @@ class Solution:
         if not prices: return 0
         cash = [0] * len(prices)
         hold = [0] * len(prices)
-        hold[0] = -prices[0]
+        hold[0] = -prices[0]#hold 该天结束手里有股票的情况下，已经获得的最大收益
         for i in range(1, len(prices)):
-            cash[i] = max(cash[i - 1], hold[i - 1] + prices[i])
-            hold[i] = max(hold[i - 1], (cash[i - 2] if i >= 2 else 0) - prices[i])
+            cash[i] = max(cash[i - 1], hold[i - 1] + prices[i])#max(昨天手里没有股票的收益，昨天手里有股票的收益+今天卖股票的收益，)
+            hold[i] = max(hold[i - 1], (cash[i - 2] if i >= 2 else 0) - prices[i])#max(昨天手里有股票的收益，前天卖掉股票的收益-今天股票的价格）
         return cash[-1]
     
 if __name__ == "__main__":
