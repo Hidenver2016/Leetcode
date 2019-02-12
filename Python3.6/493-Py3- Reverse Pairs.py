@@ -61,7 +61,9 @@ class Solution0(object):
             return count
         return countAndMergeSort(nums, 0, len(nums) - 1)
 
-
+#MergeSort的核心思想完美匹配了。我们知道混合排序就是不断的将数组对半拆分成子数组，拆到最小的数组后开始排序，
+#然后一层一层的返回，最后原数组也是有序的了。这里我们在混合排序的递归函数中，对于有序的两个子数组进行统计翻转对的个数，
+#然后再逐层返回，
 import numpy as np      
 class Solution1(object):#这个和上面的是一样的，就是要注意第88行，等于上面那个merge函数
     def reversePairs(self, nums):

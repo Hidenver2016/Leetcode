@@ -39,7 +39,7 @@ class Interval:
 class Solution1:
     def merge(self, intervals):
         out = []
-        for i in sorted(intervals, key=lambda i: i.start):
+        for i in sorted(intervals, key=lambda i: i.start): #要先按照i.start排序，再比较最后一个即可
             if out and i.start <= out[-1].end:
                 out[-1].end = max(out[-1].end, i.end)
             else:

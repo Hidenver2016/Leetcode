@@ -28,11 +28,11 @@ class Solution00:#这个题目二分法也可以做
             l, r = 0, len(t)
             while l < r:
                 mid = l + (r - l) // 2
-                if t[mid] >= nums[i]:
+                if t[mid] >= nums[i]:#原数组在新数组中的位置
                     r = mid
                 else:
                     l = mid + 1
-            res[i] = r
+            res[i] = r #坐标是在这里被记录的，所以原数组从右向左向新数组插入值就是在比较右边有多少个数比他小，如果是最后记录就迟了
             t.insert(r, nums[i])#注意，这个地方t.insert(t.begin() + right, nums[i]);
         return res
 
