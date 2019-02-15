@@ -32,7 +32,7 @@ class Solution(object):
         :rtype: void Do not return anything, modify nums in-place instead.
         """
         nums.sort()
-        med = (len(nums) - 1) // 2
+        med = (len(nums) - 1) // 2# 这个套路要记牢
         nums[::2], nums[1::2] = nums[med::-1], nums[:med:-1]
         
 """
@@ -49,5 +49,5 @@ nums = [5, 10, 4, 9, 3, 8, 2, 7, 1, 6]
 交错放置，即是符合要求的nums[0] < nums[1] （暗示了nums[::2]要小一些，所以是nums[med::-1]） > nums[2] < nums[3]....
 
 """
-        
+#http://www.cnblogs.com/grandyang/p/5139057.html        
 #https://leetcode.com/problems/wiggle-sort-ii/discuss/77677/O(n)%2BO(1)-after-median-Virtual-Indexing

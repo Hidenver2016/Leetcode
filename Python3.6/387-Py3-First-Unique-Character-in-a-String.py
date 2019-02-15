@@ -28,7 +28,7 @@ def solution(nums):
         
     return -1
 
-
+#这个比较好，构建hash 表，之后直接查表就可以了
 def solution1(nums):
     
     letters = {}
