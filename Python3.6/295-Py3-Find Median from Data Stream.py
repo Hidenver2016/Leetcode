@@ -43,8 +43,10 @@ C++ 默认是最大堆，正好是个反的
 heapq默认是最小堆，
 heapq.heappush(heap, a) O(logn)：先加入，然后在向上冒泡
 heapq.heappop(heap) O(logn)： 先弹出，然后把最后的数放在第一个，向下sink
-heapq.heappushpop(heap,a):先弹出，然后把a放在第一个，向下sink
-heap
+heapq.heappushpop(heap,a) O(logn):先push a onto heap （，向下sink） before popping (所以弹出去的有可能是a,也有可能是其他最小值) 
+heapq.heapreplace(heap,a) O(logn): return 最小值(返回的是原来的最小值)， 然后pushing a
+heapq.heapify(list) O(logn):把一个list变成heap. 把list本身改了
+此程序中两个条件语句交错运行！！！heapq.heapqpushpop heap长度不变！！！！！
 """
 
 #from heapq import heappush, heappop
@@ -52,15 +54,17 @@ heap
 import heapq
 class MedianFinder1:
     def __init__(self):
-        self.small = []  # 想搞成最大堆，就全部压负数进去
+        self.small = []  # 想搞成最大堆，就全部压负数进去，小的那一半数字放在这个里面
         self.large = []  # the larger half of the list, min heap
     
     def addNum(self, num):
         if len(self.small) == len(self.large):#长度相等时，self.small把最大数弹出来，把新数压入。self.large接收self.small的最大值 
-            heapq.heappush(self.large, -heapq.heappushpop(self.small, -num))
+#            print('1')
+            heapq.heappush(self.large, -heapq.heappushpop(self.small, -num))# 
 #            print "self.large1", self.large
 #            print "self.small1", self.small
         else:#长度不等时，self.large把最小数弹出，压入新数。self.small接收self.large的最小数，然后加负号压入
+#            print('2')
             heapq.heappush(self.small, -heapq.heappushpop(self.large, num))
 #            print "self.large2", self.large
 #            print "self.small2", self.small
@@ -74,15 +78,15 @@ class MedianFinder1:
         else:
 #            print "self.large4", self.large
 #            print "self.small4", self.small
-            return float(self.large[0])
+            return float(self.large[0])#注意看上面第一次是从large压入，可以从两个（self.small/large）都是[]开始估算一下就知道应该返回self.large[0]
 
 if __name__ == "__main__":
     mf = MedianFinder1()
-    mf.addNum(-1)
-    mf.addNum(-2)
-    mf.addNum(-3)
-    mf.addNum(-4)
-#    mf.addNum(5)
+    mf.addNum(1)
+    mf.addNum(2)
+    mf.addNum(3)
+    mf.addNum(4)
+    mf.addNum(5)
     print (mf.findMedian())
                
                
