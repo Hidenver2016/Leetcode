@@ -84,9 +84,12 @@ class Solution(object):
         if sorted(s1) != sorted(s2):
             return False
         for i in range(1, N):
-            if self.isScramble(s1[:i], s2[:i]) and self.isScramble(s1[i:], s2[i:]):
+            if self.isScramble(s1[:i], s2[:i]) and self.isScramble(s1[i:], s2[i:]):#这里的gr, rg
                 return True
-            elif self.isScramble(s1[:i], s2[-i:]) and self.isScramble(s1[i:], s2[:-i]):
-                return True
+            elif self.isScramble(s1[:i], s2[-i:]) and self.isScramble(s1[i:], s2[:-i]):#跑到这里反过来了，变成 gg, rr. 
+                return True #比较s1前面i个数和s2后面i个数，以及s1后面n-i个数和s2前面n-i个数
         return False
+    
+if __name__ =="__main__":
+    print(Solution().isScramble("great","rgeat"))
 
