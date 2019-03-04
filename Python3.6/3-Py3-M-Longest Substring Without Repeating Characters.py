@@ -42,7 +42,8 @@ Explanation: The answer is "wke", with the length of 3.
 left一定是向右移动的，不可能撤回到已经移动过的位置。
 
 """
-
+#Time:O(n)
+#Space:O(k)
 
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
@@ -52,7 +53,7 @@ class Solution(object):
         """
         left, right = 0, 0
         res = 0
-        chars = dict()
+        chars = dict()#字母是key，位置是value
         for right in range(len(s)):
             if s[right] in chars:
                 left = max(left, chars[s[right]] + 1)#如果出现过，表示之前的序列都没用了，移动到之前出现这个字母的下一个位置chars[s[right]] + 1
@@ -64,4 +65,5 @@ if __name__ == "__main__":
     print(Solution().lengthOfLongestSubstring("fbcdefghijklmn"))
     
     
+
     
