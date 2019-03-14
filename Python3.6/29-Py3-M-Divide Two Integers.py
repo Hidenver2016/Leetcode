@@ -44,7 +44,7 @@ class Solution(object):
             i = 0
             while dvd >= inc:#logn的速度
                 dvd -= inc
-                result += 1 << i
+                result += 1 << i# 移位的优先级高于加减，先计算1*2**i,再相加
                 inc <<= 1
                 i += 1
         if dividend > 0 and divisor < 0 or dividend < 0 and divisor > 0:

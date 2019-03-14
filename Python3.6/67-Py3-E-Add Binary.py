@@ -21,7 +21,7 @@ Output: "10101"
 """
 
 class Solution:
-    def addBinary(self, a, b):
+    def addBinary(self, a, b):#没有说不可以用0b转化到二进制
         return bin(eval('0b' + a) + eval('0b' + b))[2:]
     
 #https://leetcode.com/problems/add-binary/discuss/24500/An-accepted-concise-Python-recursive-solution-10-lines
@@ -33,8 +33,11 @@ class Solution1:
         if len(a)==0: return b
         if len(b)==0: return a
         if a[-1] == '1' and b[-1] == '1':
-            return self.addBinary(self.addBinary(a[0:-1],b[0:-1]),'1')+'0'
+            return self.addBinary(self.addBinary(a[0:-1],b[0:-1]),'1')+'0'#这里就是进位
         if a[-1] == '0' and b[-1] == '0':
             return self.addBinary(a[0:-1],b[0:-1])+'0'
         else:
             return self.addBinary(a[0:-1],b[0:-1])+'1'
+        
+if __name__ == "__main__":
+    print(Solution1().addBinary('1', '1'))

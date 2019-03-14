@@ -27,15 +27,15 @@ You must not use any built-in BigInteger library or convert the inputs to intege
 # Time:  O(m * n)
 # Space: O(m + n)
 
-class Solution(object):
+class Solution(object):#完全是乘法
     def multiply(self, num1, num2):
         num1, num2 = num1[::-1], num2[::-1]
         res = [0] * (len(num1) + len(num2))
         for i in range(len(num1)):
             for j in range(len(num2)):
                 res[i + j] += int(num1[i]) * int(num2[j])
-                res[i + j + 1] += res[i + j] // 10
-                res[i + j] %= 10
+                res[i + j + 1] += res[i + j] // 10#反的，所以是前面一位
+                res[i + j] %= 10#自己取余数
 
         # Skip leading 0s.
         i = len(res) - 1

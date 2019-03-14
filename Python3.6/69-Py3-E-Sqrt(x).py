@@ -22,7 +22,7 @@ Input: 8
 Output: 2
 Explanation: The square root of 8 is 2.82842..., and since 
              the decimal part is truncated, 2 is returned.
-https://blog.csdn.net/fuxuemingzhu/article/details/79254648
+‘https://blog.csdn.net/fuxuemingzhu/article/details/79254648
 """
 #牛顿法的一个迭代序列：x(n+1)=x(n)－f(x(n))/f'(x(n))
 # f(x) = x^2 - a
