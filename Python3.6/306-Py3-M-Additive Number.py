@@ -55,8 +55,8 @@ class Solution(object):
         if not num_str and len(path) >= 3:
             return True
         for i in range(len(num_str)):
-            curr = num_str[:i+1]
-            if (curr[0] == '0' and len(curr) != 1):
+            curr = num_str[:i+1]#i+1是到i,就是要确保最后一个也能被包括进来
+            if (curr[0] == '0' and len(curr) != 1):#不能出现用0开头的两位以上的数字
                 continue
             if self.dfs(num_str[i+1:], path + [int(curr)]):
                 return True
