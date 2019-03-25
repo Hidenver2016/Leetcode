@@ -26,11 +26,7 @@ https://blog.csdn.net/fuxuemingzhu/article/details/80552049
 n位数字中由不同的数字构成的数字，是比它小的各位数字所能构成的该条件的数字求和。
 
 
-如果看不明白代码，可以这么理解：题目要求的是0 ≤ x < 10^n的x个数，那么x可以为1位数，2位数……n位数。
-当x为1位数的时候有10个结果；
-当x为2位数的时候，有99个结果；
-当x为3位数的时候，有998个结果……
-也就是说当x为n位数的时候，有99*…*(11 - n个结果)，其中n必须小于等于10了（11位数字不可能每一位都不相同）。
+
 最后求和就好。
 --------------------- 
 
@@ -45,11 +41,22 @@ class Solution(object):
         """
         nums = [9, 9, 8, 7, 6, 5, 4, 3, 2, 1]
         ans, product = 1, 1
-        for i in range(min(n, 10)):
+        for i in range(min(n, 10)):#这个地方最多就是10，因为不会多于十个阿拉伯数字
             product *= nums[i]
             ans += product
         return ans
     
 if __name__ == "__main__":
     print(Solution().countNumbersWithUniqueDigits(2))
+
+
+
+
+
+
+
+
+
+
+
 

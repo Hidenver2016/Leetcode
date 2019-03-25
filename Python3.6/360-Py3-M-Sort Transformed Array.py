@@ -30,7 +30,7 @@ Output: [-23,-5,1,7]
 
 当a=0，函数是单调递增或递减的，那么从前往后填和从后往前填都可以，我们可以将这种情况和a>0合并。
 """
-class Solution:
+class Solution:#有点绕，还是看这个好一点
     def sortTransformedArray(self, nums, a, b, c):
         nums = [x*x*a + x*b + c for x in nums]
         ret = [0] * len(nums)
@@ -45,3 +45,26 @@ class Solution:
                 p2 -=1
             i += d
         return ret
+    
+# Time:  O(n)
+# Space: O(1)
+
+class Solution1(object):
+    def sortTransformedArray(self, nums, a, b, c):
+        f = lambda x, a, b, c : a * x * x + b * x + c
+
+        result = []
+        if not nums:
+            return result
+
+        left, right = 0, len(nums) - 1
+        d = -1 if a > 0 else 1
+        while left <= right:
+            if d * f(nums[left], a, b, c) < d * f(nums[right], a, b, c):
+                result.append(f(nums[left], a, b, c))
+                left += 1
+            else:
+                result.append(f(nums[right], a, b, c))
+                right -= 1
+
+        return result[::d]

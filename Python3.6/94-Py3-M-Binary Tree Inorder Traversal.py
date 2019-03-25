@@ -71,3 +71,15 @@ class Solution1(object):
             root = stack.pop()
             answer.append(root.val)
             root = root.right
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            

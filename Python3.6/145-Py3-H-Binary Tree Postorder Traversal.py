@@ -26,12 +26,8 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
 # Time:  O(n)
 # Space: O(h)
 # Stack Solution
-class Solution(object):
+class Solution(object):#这个貌似比总结的更加简单，这个是先按照中右左压栈，然后弹栈就是左右中，正好是后序
     def postorderTraversal(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[int]
-        """
         result, stack = [], [(root, False)]
         while stack:
             root, is_visited = stack.pop()

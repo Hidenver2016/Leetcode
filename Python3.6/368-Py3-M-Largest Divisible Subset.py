@@ -47,7 +47,7 @@ https://blog.csdn.net/fuxuemingzhu/article/details/83027364
 
 """
 class Solution:
-    def largestDivisibleSubset(self, nums):
+    def largestDivisibleSubset(self, nums):#此题的parent 设计比较巧妙，要仔细看看
         """
         :type nums: List[int]
         :rtype: List[int]
@@ -55,16 +55,16 @@ class Solution:
         if not nums: return []
         N = len(nums)
         nums.sort()
-        dp = [0] * N #LDS
-        parent = [0] * N
-        mx = 0
-        mx_index = -1
+        dp = [0] * N #LDS  DP[i]的含义是，从0~i位置满足题目的最长数组。
+        parent = [0] * N # dp中间每一个数字在nums中间的位置
+        mx = 0#最大子集合的长度
+        mx_index = -1#最大子集合的起始位置
         for i in range(N):
-            for j in range(i - 1, -1 , -1):
+            for j in range(i-1, -1 , -1):
                 if nums[i] % nums[j] == 0 and dp[i] < dp[j] + 1:
                     dp[i] = dp[j] + 1
                     parent[i] = j
-                    if dp[i] > mx:
+                    if dp[i] > mx:#更新mx
                         mx = dp[i]
                         mx_index = i
         res = list()
@@ -72,5 +72,9 @@ class Solution:
             res.append(nums[mx_index])
             mx_index = parent[mx_index]
         return res[::-1]
+    
+if __name__ == "__main__":
+    nums = [i for i in range(1,9)]
+    print(Solution().largestDivisibleSubset(nums))
 
 

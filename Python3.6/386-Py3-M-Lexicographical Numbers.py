@@ -25,7 +25,8 @@ https://blog.csdn.net/fuxuemingzhu/article/details/81776094
 --------------------- 
 
 原文：https://blog.csdn.net/fuxuemingzhu/article/details/81776094 
-
+# Time:  O(n)
+# Space: O(1)
 """
 class Solution:
     def lexicalOrder(self, n):

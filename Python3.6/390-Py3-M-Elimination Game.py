@@ -28,10 +28,11 @@ n = 9,
 
 Output:
 6
-
+有的时候可以从结果来分析，这个只剩下一个数字，那么删掉的就是n-1,而且reverse的复杂度是n,
+总体的复杂度应该是n^2/2的一个级数， n^2/2， (n/2)^2, (n/4)^2, ...
 
 """
-class Solution:#这个解答的时间复杂度要研究一下list切片
+class Solution:#这个解答的时间复杂度要研究一下list切片。slice的复杂度就是slice的长度
     def lastRemaining(self, n):
         """
         :type n: int
@@ -39,7 +40,7 @@ class Solution:#这个解答的时间复杂度要研究一下list切片
         """
         arr = range(1, n+1)#python3 中间这个只是一个generator,并不会产生一个超长的数列，memory是constant.pyhon2就会爆了
         while len(arr) > 1:
-            arr = arr[1::2][::-1]#注意这个地方的[::-1]说明了是从先从左到右，然后再从右到左
+            arr = arr[1::2][::-1]#注意这个地方的[::-1]说明了是从先从左到右，然后再从右到左。 
         return arr[0]
     
 if __name__ == "__main__":

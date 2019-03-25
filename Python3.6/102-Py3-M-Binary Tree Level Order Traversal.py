@@ -45,3 +45,19 @@ class Solution(object):
                     queue.append(node.right)
             res.append(level)
         return res
+    
+    
+    def BFS(self, root):
+        """利用队列实现树的层次遍历"""
+        if root == None:
+            return
+        myQueue = []
+        node = root
+        myQueue.append(node)
+        while myQueue:
+            node = myQueue.pop(0)
+            print (node.value)
+            if node.lch != None:
+                myQueue.append(node.lch)
+            if node.rch != None:
+                myQueue.append(node.rch)
