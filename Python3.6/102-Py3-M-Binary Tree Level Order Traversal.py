@@ -22,6 +22,7 @@ return its level order traversal as:
   [15,7]
 ]
 https://blog.csdn.net/fuxuemingzhu/article/details/79616156
+这个题要和144， 94， 145， 102一起做
 """
 import collections
 class Solution(object):
@@ -46,8 +47,7 @@ class Solution(object):
             res.append(level)
         return res
     
-    
-    def BFS(self, root):
+    def BFS(self, root):#标准BFS
         """利用队列实现树的层次遍历"""
         if root == None:
             return
@@ -61,3 +61,26 @@ class Solution(object):
                 myQueue.append(node.lch)
             if node.rch != None:
                 myQueue.append(node.rch)
+    
+    
+class Solution1(object):
+    def levelOrder(self, root):# 自己写的迭代，注意一下
+        if root == None: return []
+        myQueue = []
+        ans = []
+        node = root
+        myQueue.append(node)
+        while myQueue:
+            level = []
+            for i in range(len(myQueue)):
+                node = myQueue.pop(0)
+                level.append(node.val)
+                if node.left: myQueue.append(node.left)
+                if node.right: myQueue.append(node.right)
+            ans.append(level)
+        return ans
+    
+    
+    
+    
+    
