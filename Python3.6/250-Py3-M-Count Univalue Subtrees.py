@@ -29,7 +29,8 @@ Output: 4
 4th subtree: 5 (left child of 1)
 5th subtree: 5 (right child of 1)
 
-看下面自己写的例子
+看下面自己写的例子：
+子树不能包括根节点，而且子树必须完整，不能搞一个枝的左半或右半。但是叶子，和往上的父节点可以算两个子树。
 """
 class TreeNode:
     def __init__(self, x):
@@ -47,17 +48,17 @@ class Solution:
             right = recurse(node.right, node.val)
             if left and right:
                 self.ans += 1
-            return left and right and node.val == parent
+            return left and right and node.val == parent# 最后这一个条件就是要左边和右边都要等于parent，才能够返回子树
         recurse(root, None)
         return self.ans
     
 if __name__ == "__main__":
     root = TreeNode(5)
-    root.left = TreeNode(4)
+    root.left = TreeNode(6)
     root.right = TreeNode(3)
-    root.left.left = TreeNode(4)
-    root.left.right = TreeNode(4)
-    root.right.right = TreeNode(3)
+    root.left.left = TreeNode(7)
+    root.left.right = TreeNode(6)
+    root.right.right = TreeNode(6)
     print (Solution().countUnivalSubtrees(root))
     
     

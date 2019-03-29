@@ -69,7 +69,7 @@ class Solution(object):
             if len(result) < level + 1:
                 result.append([])
             result[level].append(node.val)
-            return level
+            return level #注意，这个level很重要，是从叶子开始为0，然后逐渐向上加的，所以正好是叶子为0开始
 
         result = []
         findLeavesHelper(root, result)

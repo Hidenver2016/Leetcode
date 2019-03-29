@@ -47,7 +47,7 @@ class TreeNode:
         self.left = None
         self.right = None
 
-class Solution(object):
+class Solution(object):#这个方法较优
     def isBalanced(self, root):
             
         def check(root):

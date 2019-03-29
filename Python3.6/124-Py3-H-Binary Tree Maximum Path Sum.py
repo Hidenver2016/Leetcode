@@ -35,6 +35,8 @@ Output: 42
 
 此题和687以及543是一样的
 花花讲过
+
+此题要理解： 一条边只能经过一次
 """
 
 # Time:  O(n)
@@ -56,7 +58,7 @@ class Solution(object):
     def maxPathSumRecu(self, root):
         if root is None:
             return 0
-        left = max(0, self.maxPathSumRecu(root.left))
+        left = max(0, self.maxPathSumRecu(root.left))# 0放在这就是说下面子节点上的负数就不用加上来了
         right = max(0, self.maxPathSumRecu(root.right))
         self.maxSum = max(self.maxSum, root.val + left + right)
         return root.val + max(left, right)
