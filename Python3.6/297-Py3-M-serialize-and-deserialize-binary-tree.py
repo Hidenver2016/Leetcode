@@ -36,6 +36,7 @@ Created on Thu Oct 11 00:12:29 2018
 M-如果前序遍历的过程中记录下哪些位置是空节点的话，就是可以确定这棵树的。LeetCode的官方树的构建就是这样的。
 
 因此，我们采用和上题同样的方法，只不过需要把空节点记录下来。然后在反序列化时把它再变成空节点即可
+105，297一起
 """
 import collections
 # Definition for a binary tree node.
