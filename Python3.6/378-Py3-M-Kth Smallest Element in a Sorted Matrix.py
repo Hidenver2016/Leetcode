@@ -35,14 +35,14 @@ class Solution:
     
 class Solution1(object):
     def kthSmallest(self, matrix, k):#这个方法好，记住这个
-        lo, hi = matrix[0][0], matrix[-1][-1]
-        while lo<hi:
-            mid = (lo+hi)//2
-            if sum(bisect.bisect_right(row, mid) for row in matrix) < k:#在矩阵中比mid小的数字的个数小于k
-                lo = mid+1
+        l, r = matrix[0][0], matrix[-1][-1]
+        while l < r:
+            m = (l + r) // 2
+            if sum(bisect.bisect_right(row, m) for row in matrix) >= k:#在矩阵中比m小的数字的个数大于等于k
+                r = m
             else:
-                hi = mid
-        return lo
+                l = m + 1
+        return l
     
 if __name__ == "__main__":
     matrix = [

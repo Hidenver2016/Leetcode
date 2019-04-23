@@ -115,4 +115,8 @@ class Solution2(object):#再简化
 
 if __name__ == "__main__":
     print(Solution().minFlipsMonoIncr("11011"))
+    
+    
+    
+    
         
