@@ -56,9 +56,10 @@ class Solution(object):#这个感觉比较难理解
             
             
 """
-方法二：回溯法 #这个比较好理解
+方法二：回溯法 #这个比较好理解,也是dfs
 这样的思想是我们抽取第一个字符，然后从后面n-1个字符中抽出m-1个；抽取第二个字符，
 再从后面的n-2个字符抽出m-1个……这样循环下去。因为这样的操作每次都是往后进行寻找的，所以不用考虑去重的问题。
+也可以用216一样有递归深度的写法 for i in range(index, len(nums)): self.helper(nums, k-1, i+1, path+[nums[i]])
 """
 # Time:  O(k * C(n, k))
 # Space: O(k)            
@@ -70,7 +71,7 @@ class Solution1(object):
         :rtype: List[List[int]]
         """
         res = []
-        self.helper(range(1, n + 1), k, res, [])
+        self.helper(range(1, n + 1), k, res, [])#注意：取n+1的原因是range需要到n
         return res
     
     def helper(self, array, k, res, path):
@@ -78,12 +79,13 @@ class Solution1(object):
             return
         if k == 0:
             res.append(path)
+            return
         else:
             for i in range(len(array)):
-                self.helper(array[i + 1:], k - 1, res, path + [array[i]])            
+                self.helper(array[i + 1:], k - 1, res, path + [array[i]]) # 注意： 最后一项是取[array[i]],所以前面是array[i+1:]           
             
 if __name__ == "__main__":
-    print(Solution().combine(4,2))
+    print(Solution1().combine(4,2))
     
     
     
