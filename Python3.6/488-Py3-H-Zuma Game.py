@@ -44,7 +44,7 @@ The number of balls in your hand won't exceed 5, and the string represents these
 balls is called "hand" in the input.
 Both input strings will be non-empty and only contain characters 'R','Y','B','G','W'.
 
-546，664，488
+741 546，664，488
 
 https://leetcode.com/problems/zuma-game/discuss/221386/Python-DFS-16-lines-very-easy-to-understand
 
