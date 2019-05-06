@@ -35,6 +35,8 @@ http://bookshadow.com/weblog/2017/08/21/leetcode-strange-printer/
 如果先开始考虑s[i,k], 如果s[i] == s[k], 那么s[i, k-1]的次数也一样，因为s[i] == s[k],之前可以一次打出所有s[i]
 所以，我们接下来只需要完成s[k+1, j]就可以了。那么，dp(i,j) = min(dp(i,j), dp(i, k-1) + dp(k+1, j))而且，
 dp(i,j) = 1 + dp(i+1, j) 
+
+546，664，488
 """
 
 class Solution:
