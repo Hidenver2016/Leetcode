@@ -51,6 +51,10 @@ https://leetcode.com/problems/zuma-game/discuss/221386/Python-DFS-16-lines-very-
 Time: O(n+m)^m*n^2  n=20, m=5
 Space: O(m*n) m是递归深度，每次创建一个棋盘
 剪枝，每次都要插能引爆的，意思就是至少插在要两个相连的球的后面
+
+第一步，找多少球和第一个s[i]颜色是一样的
+第二步，找出需要多少球来消除，然后dfs，每次都返回需要多少球，然后再进入第一步
+第三步， 回溯进入下一个位置的循环（表明第一步位置的假设不能完成任务，换到下一个位置重新开始）
 """
 import collections
 class Solution:
@@ -60,7 +64,7 @@ class Solution:
             res, i = float("inf"), 0
             while i < len(s):#这里i其实要穷尽所有的位置
                 j = i + 1
-                while j < len(s) and s[i] == s[j]: j += 1
+                while j < len(s) and s[i] == s[j]: j += 1#第一步找有多少球和第一个s[i]是一个颜色的
                 incr = 3 - (j - i)#如果想要引爆需要多少球
                 if c[s[i]] >= incr:#如果手里有多余需要的球，那么可以引爆进入下一个状态
                     incr = 0 if incr < 0 else incr#incr如果小于零那么证明球超过三个，直接引爆归零即可

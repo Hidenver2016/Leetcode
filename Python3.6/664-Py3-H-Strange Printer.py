@@ -39,7 +39,7 @@ dp(i,j) = 1 + dp(i+1, j)
 741 546，664，488
 """
 
-class Solution:
+class Solution:#看这个
     def strangePrinter(self, S):#这种方法比自下向上的少了很多状态，应该会快很多
         memo = {}
         def dp(i, j):

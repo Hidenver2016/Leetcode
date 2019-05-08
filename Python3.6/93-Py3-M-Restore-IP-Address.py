@@ -38,5 +38,5 @@ class Solution(object):
             return
         for i in range(min(3, len(s))):#这个最多就是3
             cur = s[:i+1]
-            if (cur[0] == '0' and len(cur) >= 2) or int(cur) > 255:break# 不符合条件，直接跳出
+            if (cur[0] == '0' and len(cur) >= 2) or int(cur) > 255: break# 不符合条件，直接跳出
             self.dfs(s[i+1:], path + [cur], res)#path是一段段的往后搜索
