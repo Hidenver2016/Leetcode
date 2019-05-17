@@ -50,7 +50,7 @@ class Solution(object):
         """
         odd = ListNode(0)
         even = ListNode(0)
-        oddHead, evenHead = odd, even
+        oddHead, evenHead = odd, even#odd, even去操作列表，oddHead, evenHead还是操作表头
         index = 0
         while head:
             if index & 1 == 0:#奇数
@@ -64,3 +64,16 @@ class Solution(object):
         even.next = None#链表终止
         odd.next = evenHead.next#链表连接
         return oddHead.next
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

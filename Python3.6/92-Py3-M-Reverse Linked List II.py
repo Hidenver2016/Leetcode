@@ -21,7 +21,7 @@ class ListNode:
         self.val = x
         self.next = None
 
-class Solution:
+class Solution1:
     def reverseBetween(self, head, m, n):
         if m == n:
             return head
@@ -55,7 +55,7 @@ class Solution:
         
         # reverse the [m, n] nodes
         newHead = None
-        cur = pre.next
+        cur = pre.next#cur是2
         for i in range(n - m + 1):
             tmp = cur.next
             cur.next = newHead

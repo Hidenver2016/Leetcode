@@ -43,8 +43,8 @@ class Solution:
     
     
     # Iteratively
-    def swapPairs1(self, head):
-        dummy = p = ListNode(0)
+    def swapPairs1(self, head):#                                                     迭代看这个
+        dummy = p = ListNode(0)#dummy和p这时候都是在开头，接着p操作交换，最后还是返回dummy.next，指向列表头
         dummy.next = head
         while head and head.next:#注意这个地方p的后面是head，
             tmp = head.next#保存2
@@ -67,7 +67,7 @@ class Solution:
 class Solution1:
     # @param a ListNode
     # @return a ListNode
-    def swapPairs(self, head):#                                                            迭代看这个
+    def swapPairs(self, head):#                                                            
         if head == None or head.next == None:
             return head
         dummy = ListNode(0); dummy.next = head
