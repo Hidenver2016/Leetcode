@@ -14,6 +14,9 @@ Output: 5->4->3->2->1->NULL
 Follow up:
 
 A linked list can be reversed either iteratively or recursively. Could you implement both?
+
+
+注意369里面reverse linklist的写法，这个写法需要固定下来
 """
 class ListNode:
     def __init__(self, x):
@@ -40,6 +43,16 @@ class Solution(object):
             newHead = head#新节点平移到head
             head = temp#head去之前的下一个节点
         return newHead
+    
+    def reverseList1(self, head):#高级迭代
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        cur, prev = head, None
+        while cur:
+            cur.next, prev, cur = prev, cur, cur.next
+        return prev
 #递归   
 class Solution1(object):
     def reverseList(self, head):
