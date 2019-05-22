@@ -32,7 +32,7 @@ class ListNode:
 class Solution:
     # @param a ListNode
     # @return a ListNode    
-    def swapPairs(self, head):#比较容易理解
+    def swapPairs(self, head):#比较容易理解,看这个把
         pre, pre.next = self, head
         while pre.next and pre.next.next:#一定要查看是不是一次有一对，要不是就不用换了
             a = pre.next#第一个
