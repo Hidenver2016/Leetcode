@@ -30,6 +30,29 @@ Given 1->2->3->4->5, reorder it to 1->5->2->4->3.
 # Splits in place a list in two halves, the first half is >= in size than the second.
 # @return A tuple containing the heads of the two halves
 
+def reorderList(self, head):#这个比较好理解！！！
+    if not head:
+        return
+        
+    # find the mid point
+    slow = fast = head 
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+
+    # reverse the second half in-place
+    pre, cur = None, slow
+    while cur:
+#        pre, node.next, node = node, pre, node.next
+        cur.next, pre, cur = pre, cur, cur.next
+    
+    # Merge in-place; Note : the last node of "first" and "second" are the same
+    first, second = head, pre
+    while second.next:
+        first.next, first = second, first.next
+        second.next, second = first, second.next
+    return
+
 
 
 class Solution:
@@ -89,29 +112,6 @@ class Solution:
         head = self.mergeLists(a, b)
         
         
-def reorderList(self, head):#这个比较好理解！！！
-    if not head:
-        return
-        
-    # find the mid point
-    slow = fast = head 
-    while fast and fast.next:
-        slow = slow.next
-        fast = fast.next.next
-
-    # reverse the second half in-place
-    pre, cur = None, slow
-    while cur:
-#        pre, node.next, node = node, pre, node.next
-        cur.next, pre, cur = pre, cur, cur.next
-    
-    # Merge in-place; Note : the last node of "first" and "second" are the same
-    first, second = head, pre
-    while second.next:
-        first.next, first = second, first.next
-        second.next, second = first, second.next
-    return
-
 
 
 

@@ -25,6 +25,36 @@ https://www.cnblogs.com/grandyang/p/5626389.html
 然后现在就是链尾是高位了，我们进行加1处理运算结束后，再把链表翻转回来即可，
 """
 
+
+#class Solution(object):
+#    def plusOne(self, head):
+#        """
+#        :type head: ListNode
+#        :rtype: ListNode
+#        """
+#        def reverseList(head):#尤其注意这个reverse的写法
+##            dummy = ListNode(0)
+##            curr = head
+##            while curr:
+##                dummy.next, curr.next, curr = curr, dummy.next, curr.next
+##            return dummy.next
+#            cur, pre = head, None
+#            while cur:
+#                cur.next, pre, cur = pre, cur, cur.next
+#            return pre
+#
+#        rev_head = reverseList(head)
+#        curr, carry = rev_head, 1
+#        while curr and carry:#这里要修改一下
+##            curr.val += carry
+##            carry = curr.val // 10
+##            curr.val %= 10
+#            carry, curr.val = (curr.val + carry)//10, (curr.val + carry)%10
+#            if carry and curr.next is None:
+#                curr.next = ListNode(0)
+#            curr = curr.next
+#
+#        return reverseList(rev_head)
 # Time:  O(n)
 # Space: O(1)
 class Solution(object):
@@ -33,21 +63,29 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
-        def reverseList(head):
-            dummy = ListNode(0)
-            curr = head
-            while curr:
-                dummy.next, curr.next, curr = curr, dummy.next, curr.next
-            return dummy.next
+        def reverseList(head):#尤其注意这个reverse的写法
+            cur, pre = head, None
+            while cur:
+                cur.next, pre, cur = pre, cur, cur.next
+            return pre
 
         rev_head = reverseList(head)
         curr, carry = rev_head, 1
-        while curr and carry:
-            curr.val += carry
-            carry = curr.val // 10
-            curr.val %= 10
+        while curr and carry:#这里要修改一下
+            carry, curr.val = (curr.val + carry)//10, (curr.val + carry)%10
             if carry and curr.next is None:
                 curr.next = ListNode(0)
             curr = curr.next
 
         return reverseList(rev_head)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

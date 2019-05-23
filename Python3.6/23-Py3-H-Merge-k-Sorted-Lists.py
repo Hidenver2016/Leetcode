@@ -119,7 +119,7 @@ class Solution3:#看这个，这个用heap的最简单，其实和用priority qu
             current.next = smallest
             current = current.next
             if smallest.next:
-                heapq.heappush(heap, (smallest.next.val, smallest.next))
+                heapq.heappush(heap, (smallest.next.val, smallest.next))#剩下的节点也要都放进去
                 
         return dummy.next
     

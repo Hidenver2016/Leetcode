@@ -38,7 +38,7 @@ class Solution:
             a = pre.next#第一个
             b = a.next#第二个
             pre.next, b.next, a.next = b, a, b.next#把b（第二个换到第一个）， a在b后面，然后第三个数连着a
-            pre = a#直接把当前指针移动到第二个，后面的以此类推
+            pre = a#直接把当前指针移动到第二个，后面的以此类推，（因为1已经和2调换位置了，这时候的移动相当于移动原来两个位置，下一个数是4，又和开始一样，可以进入下一个循环了）
         return self.next
     
     
