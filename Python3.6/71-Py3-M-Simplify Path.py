@@ -45,4 +45,36 @@ Example 6:
 
 Input: "/a//b////c/d//././/.."
 Output: "/a/b/c"
+
+https://www.cnblogs.com/grandyang/p/4347125.html
+原文：https://blog.csdn.net/fuxuemingzhu/article/details/80812350 
+
+这样我们就可以知道中间是"."的情况直接去掉，
+是".."时删掉它上面挨着的一个路径，
+而下面的边界条件给的一些情况中可以得知，如果是空的话返回"/"，如果有多个"/"只保留一个。
+
+那么我们可以把路径看做是由一个或多个"/"分割开的众多子字符串，把它们分别提取出来一一处理即可，代码如下：
 """
+
+class Solution(object):
+    def simplifyPath(self, path):
+        """
+        :type path: str
+        :rtype: str
+        """
+        stack = list()
+        dirs = path.split('/')
+        for dir1 in dirs:
+            if not dir1 or dir1 == '.':
+                continue
+            if dir1 == '..':
+                if stack:
+                    stack.pop()
+            else:                
+                stack.append(dir1)
+        return '/' + '/'.join(stack)
+
+
+
+
+

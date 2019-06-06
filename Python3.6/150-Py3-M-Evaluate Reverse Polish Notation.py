@@ -38,3 +38,49 @@ Explanation:
 = 17 + 5
 = 22
 """
+#https://blog.csdn.net/fuxuemingzhu/article/details/79559703
+import operator
+class Solution(object):
+    def evalRPN(self, tokens):
+        """
+        :type tokens: List[str]
+        :rtype: int
+        """
+        stack = []
+        operators = ['+', '-', '*', '/']
+        for token in tokens:
+            if token not in operators:
+                stack.append(token)
+            else:
+                b = stack.pop()
+                a = stack.pop()
+                if token == '/':
+                    res = int(operator.truediv(int(a), int(b)))
+                else:
+                    res = eval(a + token + b)
+                stack.append(str(res))
+        return int(stack.pop())
+    
+    
+    def evalRPN1(self, tokens):#这个比较快一点，而且不用eval
+        stack = []
+        for t in tokens:
+            if t not in ["+", "-", "*", "/"]:
+                stack.append(int(t))
+            else:
+                r, l = stack.pop(), stack.pop()
+                if t == "+":
+                    stack.append(l+r)
+                elif t == "-":
+                    stack.append(l-r)
+                elif t == "*":
+                    stack.append(l*r)
+                else:
+                    # here take care of the case like "1/-22",
+                    # in Python 2.x, it returns -1, while in 
+                    # Leetcode it should return 0
+                    if l*r < 0 and l % r != 0:
+                        stack.append(l//r+1)
+                    else:
+                        stack.append(l//r)
+        return stack.pop()
