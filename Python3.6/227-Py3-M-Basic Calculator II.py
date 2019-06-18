@@ -62,6 +62,7 @@ class Solution:
                     stack.append(stack.pop() * num)
                 elif pre_op == '/':
                     top = stack.pop()
+#                    stack.append(int(stack.pop() / num))
                     if top < 0:#if l*r < 0 and l % r != 0 leetcode 150 关于这个除号. 如果是异号应该是top//num + 1，int(top/num)更好
                         stack.append(int(top / num))
                     else:
@@ -71,6 +72,6 @@ class Solution:
         return sum(stack)
     
 if __name__ == "__main__":
-    s = "5+2"
+    s = "14-3/2"
     print (Solution().calculate(s))
 
