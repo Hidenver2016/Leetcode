@@ -46,4 +46,33 @@ Note:
 According to the definition of tree on Wikipedia: “a tree is an undirected graph in which any two vertices 
 are connected by exactly one path. In other words, any connected graph without simple cycles is a tree.”
 The height of a rooted tree is the number of edges on the longest downward path between the root and a leaf.
+
+https://leetcode.com/problems/minimum-height-trees/discuss/76055/Share-some-thoughts
+思路，从最外面开始bfs，一层层往里面剥
+https://leetcode.com/problems/minimum-height-trees/discuss/76132/Iterative-remove-leaves-Python-solution
 """
+import collections
+class Solution(object):
+    def findMinHeightTrees(self, n, edges):
+        d = collections.defaultdict(set)
+        for u, v in edges:
+            d[u].add(v)
+            d[v].add(u)
+        s = set(range(n))
+        while len(s) > 2:
+            leaves = set(i for i in s if len(d[i]) == 1)#每次都找连接点为1的，这样肯定是叶子
+            s -= leaves
+            for i in leaves:#接下来就是移除leaves
+                for j in d[i]:
+                    d[j].remove(i)
+        return list(s)
+    
+if __name__ == "__main__":
+    print(Solution().findMinHeightTrees(6, [[0, 3], [1, 3], [2, 3], [4, 3], [5, 4]]))
+    
+    
+    
+    
+    
+    
+    
