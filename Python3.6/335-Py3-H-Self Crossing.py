@@ -41,4 +41,16 @@ Example 3:
 
 Input: [1,1,1,1]
 Output: true 
+https://leetcode.com/problems/self-crossing/discuss/79141/Another-python...
+https://www.cnblogs.com/grandyang/p/5216856.html
+
+这个感觉太扯淡了
 """
+
+def isSelfCrossing(self, x):
+    b = c = d = e = 0
+    for a in x:
+        if d >= b > 0 and (a >= c or a >= c-e >= 0 and f >= d-b):
+            return True
+        b, c, d, e, f = a, b, c, d, e
+    return False

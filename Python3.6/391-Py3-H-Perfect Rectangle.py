@@ -65,10 +65,19 @@ rectangles = [
 ]
 
 Return false. Because two of the rectangles overlap with each other.
- 
-
-Accepted
-18,540
-Submissions
-65,620
+#周赛题目，没有必要做
 """
+
+
+
+
+
+
+
+
+
+
+
+
+
+

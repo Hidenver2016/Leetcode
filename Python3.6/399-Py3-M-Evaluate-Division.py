@@ -30,7 +30,7 @@ in no division by zero and there is no contradiction.
 Space: O(e+q*e)
 Time: O(e)
 
-此题是图加上DFS
+此题是图加上DFS，尤其注意中间变量的处理
 """
 
 #https://zxi.mytechroad.com/blog/graph/leetcode-399-evaluate-division/
@@ -38,7 +38,7 @@ Time: O(e)
 import collections
 class Solution:
   def calcEquation(self, equations, values, queries):
-    def divide(x, y, visited):
+    def divide(x, y, visited):#这个函数的意思就是从g[x]中寻找中间变脸n,让n与y相连。如果n，不行，那么继续寻找g[n]中的中间变量，让其与y相连
       if x == y: 
           return 1.0
       visited.add(x) # 记住访问过的
@@ -50,7 +50,7 @@ class Solution:
         if d > 0: 
             return d * g[x][n]
       return -1.0
-    
+#defaultdict(<class 'dict'>, {'a': {'b': 2.0}, 'b': {'a': 0.5, 'c': 3.0}, 'c': {'b': 0.3333333333333333}})    
     g = collections.defaultdict(dict)
     for (x, y), v in zip(equations, values):      
       g[x][y] = v
