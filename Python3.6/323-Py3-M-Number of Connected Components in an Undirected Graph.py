@@ -30,4 +30,24 @@ Output:  1
 Note:
 You can assume that no duplicate edges will appear in edges. Since all edges are undirected, 
 [0, 1] is the same as [1, 0] and thus will not appear together in edges.
+https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/discuss/77638/Python-DFS-BFS-Union-Find-solutions
 """
+
+def countComponents(n, edges):
+        def find(x):
+            if parent[x] != x:
+                parent[x] = find(parent[x])
+            return parent[x]
+            
+        def union(xy):
+            x, y = map(find, xy)
+            if rank[x] < rank[y]:
+                parent[x] = y
+            else:
+                parent[y] = x
+                if rank[x] == rank[y]:
+                    rank[x] += 1
+        
+        parent, rank = range(n), [0] * n
+        map(union, edges)
+        return len({find(x) for x in parent})

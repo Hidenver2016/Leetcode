@@ -48,13 +48,23 @@ class Solution(object):
         :type H: int
         :rtype: int
         """
-        points = [((A, B), (C, D)), ((E, F), (G, H))]
+        points = [((A, B), (C, D)), ((E, F), (G, H))]#注意这里加了括号，实际上就是在比较两个方形的最左边的点，比较A和E
         points.sort()
         ((A, B), (C, D)), ((E, F), (G, H)) = points
         area1 = (D - B) * (C - A)
         area2 = (H - F) * (G - E)
-        x, y = (min(C, G) - max(A, E)), (min(D, H) - max(B, F))
+        x, y = (min(C, G) - max(A, E)), (min(D, H) - max(B, F))#两个右上取最小的减去两个左下取最大的
         area = 0
         if x > 0 and y > 0:
             area = x * y
         return area1 + area2 - area
+    
+if __name__ == "__main__":
+    A = -3; B = 0; C = 3; D = 4; E = 0; F = -1; G = 9; H = 2
+    print(Solution().computeArea(A, B, C, D, E, F, G, H))
+
+
+
+
+
+
