@@ -35,4 +35,18 @@ logger.shouldPrintMessage(10,"foo"); returns false;
 
 // logging string "foo" at timestamp 11
 logger.shouldPrintMessage(11,"foo"); returns true;
+https://leetcode.com/problems/logger-rate-limiter/discuss/83294/Straight-forward-Python-solution
 """
+
+
+    
+class Logger(object):
+    def __init__(self):
+        self.d = {}
+
+    def shouldPrintMessage(self, timestamp, message):
+        if message in self.d and timestamp - self.d[message] < 10:
+            return False
+        else:
+            self.d[message] = timestamp
+            return True

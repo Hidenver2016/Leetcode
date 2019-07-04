@@ -31,23 +31,35 @@ Note:
 You can assume that no duplicate edges will appear in edges. Since all edges are undirected, 
 [0, 1] is the same as [1, 0] and thus will not appear together in edges.
 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/discuss/77638/Python-DFS-BFS-Union-Find-solutions
-"""
+https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/discuss/77625/Short-Union-Find-in-Python-Ruby-C%2B%2B
 
-def countComponents(n, edges):
-        def find(x):
-            if parent[x] != x:
-                parent[x] = find(parent[x])
-            return parent[x]
-            
-        def union(xy):
-            x, y = map(find, xy)
-            if rank[x] < rank[y]:
-                parent[x] = y
-            else:
-                parent[y] = x
-                if rank[x] == rank[y]:
-                    rank[x] += 1
-        
-        parent, rank = range(n), [0] * n
-        map(union, edges)
-        return len({find(x) for x in parent})
+找出有几个枝
+"""
+class Solution:#这个union-find最快
+    def countComponents(self, n, edges):
+        p = [i for i in range(n)]#python 2 此处可以写 p = range(n), 但是python3不行
+        def find(v):
+            if p[v] != v:
+                p[v] = find(p[v])
+            return p[v]
+        for v, w in edges:
+            p[find(v)] = find(w)
+#            print(p)
+#        print(list(map(find,p)))
+        return len(set(map(find, p)))
+    
+    
+if __name__ == "__main__":
+    edges = [[0, 1], [1, 2], [3, 4]]
+    print(Solution().countComponents(5,edges))
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

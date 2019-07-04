@@ -16,3 +16,16 @@ m.next(10) = (1 + 10) / 2
 m.next(3) = (1 + 10 + 3) / 3
 m.next(5) = (10 + 3 + 5) / 3
 """
+import collections
+class MovingAverage:
+
+    def __init__(self, size: int):
+        """
+        Initialize your data structure here.
+        """
+        
+        self.data = collections.deque(maxlen = size)       
+
+    def next(self, val: int) -> float:        
+        self.data.append(val)
+        return sum(self.data)/len(self.data)

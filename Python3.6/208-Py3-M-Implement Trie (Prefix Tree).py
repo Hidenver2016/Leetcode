@@ -71,7 +71,6 @@ class Trie(object):
         current = self.root
         for w in word:
             current = current.children.get(w)#False
-#            print(current.isword, w)#
             if current == None:
                 return False
         return current.isword# isword 将会在遍历完apple, 字母e之后，自动改成True,所以search('app') 返回

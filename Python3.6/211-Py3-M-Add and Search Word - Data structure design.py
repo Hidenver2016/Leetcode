@@ -50,7 +50,7 @@ class WordDictionary(object):
     
     def dfs(self, node, word):
         if not word:
-            if node.isWord:
+            if node.isWord:#注意看为什么没有出现比较语句，因为这里node.isWord == True就是已经对了
                 self.res = True
             return 
         if word[0] == ".":
@@ -58,6 +58,6 @@ class WordDictionary(object):
                 self.dfs(n, word[1:])
         else:
             node = node.children.get(word[0])
-            if not node:
+            if not node:#注意看为什么没有出现比较语句，因为这里node == None，就会返回False
                 return 
             self.dfs(node, word[1:])

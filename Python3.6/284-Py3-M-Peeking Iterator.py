@@ -19,4 +19,44 @@ Now you call peek() and it returns 2, the next element. Calling next() after tha
 You call next() the final time and it returns 3, the last element. 
 Calling hasNext() after that should return false.
 Follow up: How would you extend your design to be generic and work with all types, not just integer?
+这道题让我们实现一个顶端迭代器，在普通的迭代器类Iterator的基础上增加了peek的功能，就是返回查看下一个值的功能，但是不移动指针，next()函数才会移动指针，
+
+https://leetcode.com/problems/peeking-iterator/discuss/72626/Simple-Python-Solution 
 """
+
+# Below is the interface for Iterator, which is already defined for you.
+#
+# class Iterator(object):
+#     def __init__(self, nums):
+#         """
+#         Initializes an iterator object to the beginning of a list.
+#         :type nums: List[int]
+#         """
+#
+#     def hasNext(self):
+#         """
+#         Returns true if the iteration has more elements.
+#         :rtype: bool
+#         """
+#
+#     def next(self):
+#         """
+#         Returns the next element in the iteration.
+#         :rtype: int
+#         """
+
+class PeekingIterator(object):
+    def __init__(self, iterator):
+        self.iter = iterator
+        self.temp = self.iter.next() if self.iter.hasNext() else None
+
+    def peek(self):
+        return self.temp
+
+    def next(self):
+        ret = self.temp
+        self.temp = self.iter.next() if self.iter.hasNext() else None
+        return ret
+
+    def hasNext(self):
+        return self.temp is not None

@@ -31,3 +31,69 @@ Input:
 
 Output: [1,4,8,2,5,9,3,6,7].
 """
+# Time:  O(n)
+# Space: O(k)
+import collections
+class ZigzagIterator(object):
+
+    def __init__(self, v1, v2):
+        """
+        Initialize your q structure here.
+        :type v1: List[int]
+        :type v2: List[int]
+        """
+        self.q = collections.deque([(len(v), iter(v)) for v in (v1, v2) if v])
+
+    def next(self):
+        """
+        :rtype: int
+        """
+        len, iter = self.q.popleft()
+        if len > 1:
+            self.q.append((len-1, iter))
+        return next(iter)
+
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        return bool(self.q)
+import itertools    
+class ZigzagIterator(object):#这个比较快
+
+    def __init__(self, v1, v2):
+        self.vals = (v[i] for i in itertools.count() for v in (v1, v2) if i < len(v))
+        self.n = len(v1) + len(v2)
+
+    def next(self):
+        self.n -= 1
+        return next(self.vals)
+
+    def hasNext(self):
+        return self.n > 0
+    
+    
+if __name__ == "__main__":
+    v1 = [1,2]
+    v2 = [3,4,5,6]
+    v3 = [7,8]
+    myclass = ZigzagIterator(v1, v2)
+#    myiter = iter(myclass)
+    for i in range(len(v1)+len(v2)):
+        print(myclass.next())
+     
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

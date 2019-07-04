@@ -51,14 +51,7 @@ class Trie():
         for w in word:
             node = node.children[w]
         node.isWord = True
-    
-#    def search(self, word):
-#        node = self.root
-#        for w in word:
-#            node = node.children.get(w)
-#            if not node:
-#                return False
-#        return node.isWord
+
     
 class Solution(object):
     def findWords(self, board, words):
@@ -82,7 +75,7 @@ class Solution(object):
         node = node.children.get(tmp)
         if not node:
             return 
-        board[i][j] = "#"
+        board[i][j] = "#"#一个字母不能在查找一个词的时候多次使用
         self.dfs(board, node, i+1, j, path+tmp, res)
         self.dfs(board, node, i-1, j, path+tmp, res)
         self.dfs(board, node, i, j-1, path+tmp, res)
