@@ -42,7 +42,7 @@ isUnique("make") -> true
 https://leetcode.com/problems/unique-word-abbreviation/discuss/73145/Python-short-solution-using-defaultdict-with-comments.
 """
 import collections
-class ValidWordAbbr:
+class ValidWordAbbr1:
     def __init__(self, dictionary):
         self.dic = collections.defaultdict(set)
         for s in dictionary:
@@ -59,13 +59,34 @@ class ValidWordAbbr:
         # appear multiple times in the dictionary, so it's better using set instead of list)
         #这个地方还要加list, 比较奇怪
         return len(self.dic[word]) == 0 or (len(self.dic[word]) == 1 and val == list(self.dic[word])[0])
+class ValidWordAbbr: #这个更容易理解   
+    def __init__(self, dictionary):
+        self.dt = collections.defaultdict(set)
+        for d in dictionary:
+            abbr = d[0] + str(len(d)) + d[-1]
+            self.dt[abbr].add(d)
+    
+    def isUnique(self, word):
+        abbr = word[0] + str(len(word)) + word[-1]
+        return abbr not in self.dt or self.dt[abbr] == set([word])
 
 if __name__ == "__main__":
     Input = ["ValidWordAbbr","isUnique"]
-    Word = ["hello","hello"]
-    A = ValidWordAbbr(Input)
+    Word = ["hello","helao"]
+    A = ValidWordAbbr(Word)
     print(A.isUnique(Word))
     print(A.isUnique("hello"))
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
