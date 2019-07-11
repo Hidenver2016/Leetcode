@@ -29,3 +29,16 @@ You may assume that the matrix does not change.
 There are many calls to sumRegion function.
 You may assume that row1 ≤ row2 and col1 ≤ col2.
 """
+
+class NumMatrix:
+    def __init__(self, matrix):
+        if not matrix:
+            return 
+        n, m = len(matrix), len(matrix[0])
+        self.sum = [[0 for _ in range(m+1)] for _ in range(n+1)]
+        for i in range(n):
+            for j in range(m):
+                self.sum[i+1][j+1] = self.sum[i+1][j] + self.sum[i][j+1] + matrix[i][j] - self.sum[i][j]
+
+    def sumRegion(self, row1, col1, row2, col2):
+        return self.sum[row2+1][col2+1]- self.sum[row1][col2+1] - self.sum[row2+1][col1] + self.sum[row1][col1]
