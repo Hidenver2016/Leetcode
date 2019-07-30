@@ -40,9 +40,13 @@ Created on Thu Oct 11 00:18:59 2018
 #
 #print (result)
 
-
+"""
 # Time:  O(n)
 # Space: O(1)
+#关键是思路：先找最大值，然后从左边开始向最大值过一遍；然后从最右向最大值过一遍。
+#原理：里面的水（从左向右或从右向左）会被外面高的挡住 result += A[second_top] - A[i]
+"""
+
 
 class Solution(object):
     # @param A, a list of integers

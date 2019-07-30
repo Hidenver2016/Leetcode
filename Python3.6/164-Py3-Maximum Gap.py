@@ -44,10 +44,10 @@ class Solution:
         size = math.ceil((b-a)/(len(num)-1))
         bucket = [[None, None] for _ in range((b-a)//size+1)]
         for n in num:
-            b = bucket[(n-a)//size]
+            b = bucket[(n-a)//size]#确定在哪个桶里面
             b[0] = n if b[0] is None else min(b[0], n)# 最小值
             b[1] = n if b[1] is None else max(b[1], n)#最大值
-        bucket = [b for b in bucket if b[0] is not None]
+        bucket = [b for b in bucket if b[0] is not None]#除掉那些none的点
         return max(bucket[i][0]-bucket[i-1][1] for i in range(1, len(bucket))) #需要排序后的连续数之间的最大差距，所以是两个桶之间的差距（注意最大最小）
     
 if __name__ == "__main__":
