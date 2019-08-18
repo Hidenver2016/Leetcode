@@ -50,22 +50,27 @@ class Solution(object):
         :rtype: int
         """
         if not nums: return -1
-        left, right = 0, len(nums) - 1
-        while left <= right:
-            mid = (left + right) / 2
+        l, r = 0, len(nums) - 1
+        while l <= r:#注意，边缘元素的判断
+            mid = (l + r) // 2
             if nums[mid] == target:
                 return mid
-            if nums[mid] < nums[right]:#mid和right之间是有序的
-                if nums[mid] < target <= nums[right]:
-                    left = mid + 1#在右侧
+            if nums[mid] < nums[r]:#mid和r之间是有序的
+                if nums[mid] < target <= nums[r]:#注意mid的那一侧都是小于或者大于，另一侧才包含等于，这样才好修改
+                    l = mid + 1#在右侧
                 else:
-                    right = mid - 1#在左侧
+                    r = mid - 1#在左侧
             else:#左侧是一定有序的
-                if nums[mid] > target >= nums[left]:
-                    right = mid - 1#在左侧
+                if nums[mid] > target >= nums[l]:
+                    r = mid - 1#在左侧
                 else:
-                    left = mid + 1#在右侧
-        return -1            
+                    l = mid + 1#在右侧
+        return -1
+
+if __name__ == "__main__":
+    nums = [4,5,6,7,0,1,2]
+    target = 0
+    print(Solution().search(nums, target))          
     
     
     
