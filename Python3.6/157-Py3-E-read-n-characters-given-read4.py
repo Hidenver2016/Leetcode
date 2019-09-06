@@ -112,25 +112,9 @@ def read4(buf):
     return i
         
 class Solution(object):
-#    def read(self, buf, n):
-#        """
-#        :type buf: Destination buffer (List[str])
-#        :type n: Maximum number of characters to read (int)
-#        :rtype: The number of characters read (int)
-#        """
-#        read_bytes = 0
-#        buffer = [''] * 4
-#        for i in range(n // 4 + 1):
-#            size = read4(buffer)
-#            if size:
-#                buf[read_bytes:read_bytes+size] = buffer
-#                read_bytes += size
-#            else:
-#                break
-#        return min(read_bytes, n)
-#https://leetcode.com/problems/read-n-characters-given-read4/discuss/49520/Python-solution-with-explainations-and-comments
+    #https://leetcode.com/problems/read-n-characters-given-read4/discuss/49520/Python-solution-with-explainations-and-comments
 #这个题目细节比较绕，但是总体就是如何用4个的函数read4来读取任意n个字符    
-    def read1(self, buf, n):#看这个
+    def read1(self, buf, n):#看这个,考虑到158，还是看这个把
         idx = 0
         while n > 0:
             # read file to buf4
@@ -145,6 +129,23 @@ class Solution(object):
                 n -= 1
         return idx
 
+    def read(self, buf, n):#第二次觉得这个更清楚，考虑到158的解法，还是看上面的
+        """
+        :type buf: Destination buffer (List[str])
+        :type n: Maximum number of characters to read (int)
+        :rtype: The number of characters read (int)
+        """
+        read_bytes = 0
+        buffer = [''] * 4
+        for i in range(n // 4 + 1):
+            size = read4(buffer)#这个命令是把global file content 读入 buffer
+            if size:
+                buf[read_bytes:read_bytes+size] = buffer
+                read_bytes += size
+            else:
+                break
+        return min(read_bytes, n)
+
 if __name__ == "__main__":
     global file_content
     buf = ['' for _ in range(100)]
@@ -153,7 +154,7 @@ if __name__ == "__main__":
     file_content = "abcdefghijk"
 #    set_number = Solution().read(buf, 9)
 #    print (buf[:set_number])
-    print (buf[:Solution().read(buf, 1)])
+    print (buf[:Solution().read1(buf, 1)])
 #    print (buf[:Solution().read(buf, 2)])
     
     

@@ -34,6 +34,7 @@ Output: []
 """
 # Time:  O(m * n * k), where m is string length, n is dictionary size, k is word length
 # Space: O(n * k)
+import collections
 class Solution1:#这个比较清晰，看这个就行了
     # @param S, a string
     # @param L, a list of string
@@ -41,8 +42,7 @@ class Solution1:#这个比较清晰，看这个就行了
     def findSubstring(self, S, L): #可以加一些边界条件
         if not S or not L: return []
         wordNum, wordLen = len(L), len(L[0])
-        words = collections.defaultdict(int)
-        for i in L: words[i] += 1
+        words = collections.Counter(L)#Counter({'bar': 1, 'foo': 1})
         res = []
         for i in range(len(S) + 1 - wordLen * wordNum):#这里+1是需要遍历到最后一个词
             curr = collections.defaultdict(int)

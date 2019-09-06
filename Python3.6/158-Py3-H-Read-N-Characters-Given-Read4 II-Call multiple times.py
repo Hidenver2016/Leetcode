@@ -93,8 +93,7 @@ class Solution: #看这个，这个比157题增加难度是需要一个self.queu
             for i in range(curr):
                 buf[idx] = self.queue.pop(0)#每次读取都从中间变量中弹出最前面的，第二次读取的话就没有了
                 idx+=1
-            if curr == 0:
-                break 
+            if curr == 0: break 
         return idx
     
 if __name__ == "__main__":

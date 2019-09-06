@@ -35,6 +35,8 @@ https://www.cnblogs.com/grandyang/p/4340948.html
 - 如果cnt等于T串长度时，开始循环，纪录一个字串并更新最小字串值。然后将子窗口的左边界向右移，
 如果某个移除掉的字母是T串中不可缺少的字母，那么cnt自减1，表示此时T串并没有完全匹配。
 
+此题中need 表示一个hashtable，记录字母的数字，如果为负数的话，证明当前区间里面有多于要求的字母，即字母数大于t中的对应字母数，可以缩小空间
+
 """
 import collections
 class Solution:
@@ -43,7 +45,7 @@ class Solution:
         i = Start = End = 0
         for j, c in enumerate(s, 1):
 #            missing -= need[c] > 0# s存在一个c就把所需长度missing减去一个 if need[c] > 0: missing -= 1
-            if need[c] > 0: missing -= 1
+            if need[c] > 0: missing -= 1# 如果missing == 0 证明当前区域包含所有的字母
             need[c] -= 1#同时也把原Counter减少一个
             if not missing:# not 只有是0，才是True,其他都是False。 在python中 None,  False, 空字符串"", 0, 空列表[], 空字典{}, 空元组()都相当于False 
                 while i < j and need[s[i]] < 0:# need[s[i]]<0证明后面出现过很多次s[i]，可以缩短左边，即是增加 i
@@ -52,6 +54,8 @@ class Solution:
                 if not End or j - i <= End - Start:#End和Start保持着最短距离
                     Start, End = i, j
         return s[Start:End]
+    
+    
     def minWindow1(self, s, t):#这个解释其实不太好理解
         need = collections.Counter(t)            #hash table to store char frequency # need Counter({'A': 1, 'B': 1, 'C': 1})
         missing = len(t)                         #total number of chars we care
@@ -74,3 +78,17 @@ class Solution:
     
 if __name__ == "__main__":
     print(Solution().minWindow("ADOBECODEBANC", "ABC"))
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

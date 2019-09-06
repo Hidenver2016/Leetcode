@@ -82,7 +82,7 @@ class Solution:
                     cur[i%(len(cur)-1 or 1)] += ' '#在单词之间加空格，先来的先加，保证了右边多左边少。注意len(cur)-1,不把空格放在最后一个词后面，or 1是1个词的边界条件
                 res.append(''.join(cur))#用append比较好，如果是用+=和extend就把后面的一段句子全部拆成了字母和空格 res = ['S', 'c', 'i', 'e', 'n', 'c', 'e', ' ', ' ', 'i', 's', ' ', ' ', 'w', 'h', 'a', 't', ' ', 'w', 'e']
                 cur, num_of_letters = [], 0
-            cur += [w]
+            cur += [w]#这里len(cur)是指有多少个单词，实际上是计算有多少个空格
             num_of_letters += len(w)
         return res + [' '.join(cur).ljust(maxWidth)]
 
