@@ -45,12 +45,12 @@ class Solution(object):
         start = 1
         while n > _len * cnt:
             n -= _len * cnt #前九个数都是1位的，然后10到99总共90个数字都是两位的，100到999这900个数都是三位的
-            _len += 1
+            _len += 1#每次位数都会加一，长度对应也加一
             cnt *= 10
             start *= 10
-        start += (n - 1) // _len
-        return int(str(start)[(n - 1) % _len])
+        start += (n - 1) // _len#那么(n-1)/len就是目标数字在该区间里的坐标，加上start就是得到了目标数字
+        return int(str(start)[(n - 1) % _len])#(n-1)%len就是所要求的目标位，最后别忘了考虑int溢出问题
     
 if __name__ == "__main__":
-    print(Solution().findNthDigit(100))
+    print(Solution().findNthDigit(1000))
 

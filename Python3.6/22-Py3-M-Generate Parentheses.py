@@ -41,3 +41,6 @@ class Solution(object):
             self.dfs(res, left - 1, right, path + '(')
         if left < right:
             self.dfs(res, left, right - 1, path + ')')
+                
+if __name__ == "__main__":
+    print(Solution().generateParenthesis(3))

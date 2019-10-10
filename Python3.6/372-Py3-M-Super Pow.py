@@ -39,7 +39,7 @@ class Solution(object):
         if b == 0 or a == 1: return 1
         if b % 2:
             return a * self.pow(a, b - 1) % 1337
-        return self.pow((a * a) % 1337, b / 2) % 1337
+        return self.pow((a * a) % 1337, b // 2) % 1337
     
     
 #https://leetcode.com/problems/super-pow/discuss/84475/Fermat-and-Chinese-Remainder

@@ -37,8 +37,22 @@ class TreeNode:
         self.val = x
         self.left = None
         self.right = None
-
+        
 class Solution:
+    def countUnivalSubtrees(self, root):#这个题目不会，看这个,可以看这个，好好体会递归
+        if not root: return 0
+        self.res = 0
+        self.helper(root, None)
+        return self.res
+
+    def helper(self, node, parent):
+        if not node: return True# 所有叶子其实都算一个univalue subtree
+        left = self.helper(node.left, node.val) # 最下面的5弄完之后，最后一句node.val (5) == parent (1)是错的，所以返回到此句，left也是错的， 所以1左侧的5只有一棵树
+        right = self.helper(node.right, node.val)
+        if left and right: self.res += 1
+        return left and right and node.val == parent#如果左右子树都符合条件，而且自己本身还等于parent，可以传递True往上
+
+class Solution1:
     def countUnivalSubtrees(self, root):
         self.ans = 0
         def recurse(node, parent):
@@ -54,11 +68,11 @@ class Solution:
     
 if __name__ == "__main__":
     root = TreeNode(5)
-    root.left = TreeNode(6)
-    root.right = TreeNode(3)
-    root.left.left = TreeNode(7)
-    root.left.right = TreeNode(6)
-    root.right.right = TreeNode(6)
+    root.left = TreeNode(1)
+    root.right = TreeNode(5)
+    root.left.left = TreeNode(5)
+    root.left.right = TreeNode(5)
+    root.right.right = TreeNode(5)
     print (Solution().countUnivalSubtrees(root))
     
     

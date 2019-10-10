@@ -26,6 +26,10 @@ https://blog.csdn.net/baidu_23318869/article/details/50386323
 那么问题就简化为了求1到n之间完全平方数的个数，也就是平方根取整
 http://www.cnblogs.com/grandyang/p/5100098.html
 
+
+还有一种方法更简单，我们直接对n开方，在C++里的sqrt函数返回的是一个整型数，
+这个整型数的平方最接近于n，即为n包含的所有完全平方数的个数，参见代码如下：
+
 """
 import math
 class Solution(object):
@@ -34,4 +38,4 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        return int(math.sqrt(n))
+        return int(math.sqrt(n))                                                                       

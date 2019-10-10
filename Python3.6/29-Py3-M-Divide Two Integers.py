@@ -41,7 +41,7 @@ class Solution(object):
         result, dvd, dvs = 0, abs(dividend), abs(divisor)
         while dvd >= dvs:#看清楚是两重循环
             inc = dvs#赋值
-            i = 0
+            i = 0# 注意这里
             while dvd >= inc:#logn的速度
                 dvd -= inc
                 result += 1 << i# 移位的优先级高于加减，先计算1*2**i,再相加

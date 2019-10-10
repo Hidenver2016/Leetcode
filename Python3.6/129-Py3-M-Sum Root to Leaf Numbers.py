@@ -42,20 +42,21 @@ Therefore, sum = 495 + 491 + 40 = 1026.
 https://blog.csdn.net/fuxuemingzhu/article/details/79369956
 """
 class Solution(object):
-    def sumNumbers(self, root):
+    def sumNumbers(self, root):#看这个
         """
         :type root: TreeNode
         :rtype: int
         """
         if root == None:
             return 0
-        res = [0]
+        res = [0]# 这里要注意，写成list是方便传值进入dfs
         self.dfs(root, res, root.val)
         return res[0]
 
     def dfs(self, root, res, path):
         if root.left == None and root.right == None:
             res[0] += path
+            return
         if root.left != None:
             self.dfs(root.left, res, path * 10 + root.left.val)
         if root.right != None:

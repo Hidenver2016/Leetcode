@@ -69,12 +69,12 @@ class NestedIterator(object):
         def getAll(nests):
             for nest in nests:
                 if nest.isInteger():
-                    self.queue.append(nest.getInteger())
+                   self.queue.append(nest.getInteger())
                 else:
                     getAll(nest.getList())
         getAll(nestedList)
 
-    def next(self):
+    def next(self):# 在初始化的时候已经把[1,[4,[6]]] 变成了[1,4,6]装在deque里面，那么每次用next就依次出现1，4，6
         """
         :rtype: int
         """
@@ -84,7 +84,12 @@ class NestedIterator(object):
         """
         :rtype: bool
         """
-        return len(self.queue)
+        return len(self.queue)#这样返回看看 queue里面还有没有数字
+    
+#if __name__ == "__main__":
+#    Input1 = [[1,1],2,[1,1]]
+#    Input2 = [1,[4,[6]]]
+#    a = NestedIterator(Input1)
     
 
     

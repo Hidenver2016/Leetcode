@@ -56,8 +56,22 @@ class TreeNode:
         self.val = x
         self.left = None
         self.right = None
+        
+class Solution:
+    def findLeaves(self, root):#看这个，根据下面的答案写成自己熟悉的形式
+        if not root: return []
+        self.res = []
+        self.helper(root, self.res)
+        return self.res
+    
+    def helper(self, node, res):
+        if not node: return -1
+        level = 1 + max(self.helper(node.left, res), self.helper(node.right, res))#当前深度,叶子是0，向上逐级递增
+        if len(res) < level + 1: res.append([])#左右子节点中较大值加1为当前节点的深度值
+        res[level].append(node.val)
+        return level#注意，这个level很重要，是从叶子开始为0，然后逐渐向上加的，所以正好是叶子为0开始
 
-class Solution(object):
+class Solution1(object):
     def findLeaves(self, root):
         """
         :type root: TreeNode
@@ -66,8 +80,8 @@ class Solution(object):
         def findLeavesHelper(node, result):
             if not node:
                 return -1
-            level = 1 + max(findLeavesHelper(node.left, result), findLeavesHelper(node.right, result))
-            if len(result) < level + 1:
+            level = 1 + max(findLeavesHelper(node.left, result), findLeavesHelper(node.right, result))#当前深度,叶子是0，向上逐级递增
+            if len(result) < level + 1:#左右子节点中较大值加1为当前节点的深度值
                 result.append([])
             result[level].append(node.val)
             return level #注意，这个level很重要，是从叶子开始为0，然后逐渐向上加的，所以正好是叶子为0开始
@@ -76,6 +90,10 @@ class Solution(object):
         findLeavesHelper(root, result)
         return result
     
+
+        
+        
+    
 if __name__ == "__main__":
     root = TreeNode(1)
     root.left = TreeNode(2)
@@ -83,7 +101,7 @@ if __name__ == "__main__":
     root.left.left = TreeNode(4)
     root.left.right = TreeNode(5)
 #    root.right.right = TreeNode(3)
-    print (Solution().findLeaves(root))
+    print (Solution1().findLeaves(root))
     
     
     

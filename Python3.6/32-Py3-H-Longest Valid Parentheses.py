@@ -38,6 +38,8 @@ class Solution:#这个难理解，算了
         return max(dp)
     
 #http://www.cnblogs.com/grandyang/p/4424731.html
+# Time: O(n)
+# Space: O(n)
 class Solution1:#这个容易理解一点，时间空间都是n
     def longestValidParentheses(self, s):
         res = 0; start = 0
@@ -49,9 +51,9 @@ class Solution1:#这个容易理解一点，时间空间都是n
                 else:
                     stack.pop()
                     if len(stack) == 0: 
-                        res = max(res, i - start + 1)
+                        res = max(res, i - start + 1)#stack空了，可以计算长度
                     else:
-                        res = max(res, i - stack[-1])
+                        res = max(res, i - stack[-1])#还没有空，比如 ((此时来一个)，只剩一个(。此时计算的是到未配对(之间的距离
         return res
     
 if __name__ == "__main__":

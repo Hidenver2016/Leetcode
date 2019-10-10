@@ -45,6 +45,31 @@ Explanation: Longest consecutive sequence path is 2-3, not 3-2-1, so return 2.
 # Time:  O(n)
 # Space: O(h)
 #https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/discuss/74576/13-lines-of-Python-DFS-solution
+
+
+class Solution2(object):
+    def longestConsecutive(self, root):#自己写的，看这个
+        if not root: return 0
+        self.res = 1
+#        path = []
+        self.helper(root, self.res)
+        return self.res
+
+    def helper(self, root, curLen):
+        if curLen > self.res:
+            self.res = curLen
+#            return
+        if root.left:
+            self.helper(root.left, curLen + 1 if root.left.val == root.val + 1 else 1)
+        if root.right:
+            self.helper(root.right, curLen + 1 if root.right.val == root.val + 1 else 1)
+
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
 from collections import deque
 class Solution:#iter dfs
     def longestConsecutive(self, root):
@@ -64,7 +89,7 @@ class Solution:#iter dfs
         return ret
     
 class Solution1(object):
-    def longestConsecutive(self, root):
+    def longestConsecutive(self, root):#看这个
         """
         :type root: TreeNode
         :rtype: int
@@ -113,5 +138,35 @@ class Solution1(object):
                     l = length + 1 if child.val == node.val + 1 else 1
                     dq.append([child, l])
         return ans
+    
+    
+    
+
+
+            
+if __name__ == "__main__":
+    root = TreeNode(1)
+#    root.left = TreeNode(2)
+    root.right = TreeNode(3)
+    root.right.left = TreeNode(2)
+    root.right.right = TreeNode(4)
+    root.right.right.right = TreeNode(5)
+    print (Solution2().longestConsecutive(root))
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
     
     

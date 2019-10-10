@@ -53,13 +53,46 @@ class Solution(object):
         if not root.right: return self.minDepth(root.left) + 1 # 右边没有就找左边
         return 1 + min(self.minDepth(root.right), self.minDepth(root.left)) # 两边都有就取最小值
     
+class Solution1:
+    def minDepth(self, root):# 自己写的，这里需要注意，用了self就不太好搞了
+        if not root: return 0
+        res = []
+        depth = 1
+        self.helper(root, res, depth)
+        return min(res)
+
+    def helper(self, root, res, depth):
+        if root.left == None and root.right == None:
+            res.append(depth)
+            return
+        if root.left:
+            self.helper(root.left, res, depth+1)
+        if root.right:
+            self.helper(root.right, res, depth+1)
+    
 if __name__ == "__main__":
     root = TreeNode(1)
     root.left = TreeNode(2)
     root.right = TreeNode(3)
     root.right.left = TreeNode(4)
     root.right.right = TreeNode(5)
-    print (Solution().minDepth(root))
+    print (Solution1().minDepth(root))
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

@@ -44,7 +44,7 @@ class Solution:
         while True:
             valid = filter(isvalid, level)
             valid = list(valid)#python3 需要加上这一行
-            if valid:
+            if valid: #可以就返回，那么肯定是删掉最少的括号
                 return valid# 两个循环在一行的，前面的是大循环，后面的是小循环
             level = {s[:i] + s[i+1:] for s in level for i in range(len(s))}#用这个方法level这个就没有关系。
 #            for s in level:  #如果用这个操作的话，level本身会改变，循环就会报错，需要多加一个临时变量

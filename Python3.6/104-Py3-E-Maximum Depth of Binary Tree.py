@@ -26,6 +26,24 @@ return its depth = 3.
 
 110和104类似
 """
+
+class Solution:#自己写的，比较复杂，但时间很快
+    # @param {TreeNode} root
+    # @return {integer}
+    def maxDepth(self, root):
+        if not root: return 0
+        self.res = float("-inf")
+        self.helper(root, 1)
+        return self.res
+
+    def helper(self, root, depth):
+        if root.left == None and root.right == None and depth > self.res:
+            self.res = depth
+            return
+        if root.left:
+            self.helper(root.left, depth + 1)
+        if root.right:
+            self.helper(root.right, depth + 1)
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, x):

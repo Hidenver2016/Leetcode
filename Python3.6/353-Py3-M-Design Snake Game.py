@@ -57,7 +57,7 @@ snake.move("L"); -> Returns 2 (Snake eats the second food)
 | | |S|
 
 snake.move("U"); -> Returns -1 (Game over because snake collides with border)
-
+https://leetcode.com/problems/design-snake-game/discuss/82681/Straightforward-Python-solution-using-deque
 """
 import collections
 class SnakeGame(object):
@@ -72,11 +72,11 @@ class SnakeGame(object):
         :type height: int
         :type food: List[List[int]]
         """
-        self.snake = collections.deque([[0,0]])    # snake head is at the front
+        self.snake = collections.deque([[0,0]])    # snake head is at the front,[[0,0], [0,1], ...]类似于这种
         self.width = width
         self.height = height
         self.food = collections.deque(food)
-        self.direct = {'U': [-1, 0], 'L': [0, -1], 'R': [0, 1], 'D': [1, 0]}
+        self.direct = {'U': [-1, 0], 'L': [0, -1], 'R': [0, 1], 'D': [1, 0]}#注意上下左右的定义
         
     
     def move(self, direction):
@@ -88,11 +88,11 @@ class SnakeGame(object):
         :type direction: str
         :rtype: int
         """
-        newHead = [self.snake[0][0]+self.direct[direction][0], self.snake[0][1]+self.direct[direction][1]]
+        newHead = [self.snake[0][0]+self.direct[direction][0], self.snake[0][1]+self.direct[direction][1]]#新的头等于目前的头加上下一步的方向
         
         # notice that the newHead can be equal to self.snake[-1]
         if (newHead[0] < 0 or newHead[0] >= self.height) or (newHead[1] < 0 or newHead[1] >= self.width)\
-        or (newHead in self.snake and newHead != self.snake[-1]): return -1
+        or (newHead in self.snake and newHead != self.snake[-1]): return -1#这一句是说新的head可以连接自己的尾巴，head是从左边贴上去的
     
         if self.food and self.food[0] == newHead:  # eat food
             self.snake.appendleft(newHead)   # just make the food be part of snake

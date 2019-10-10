@@ -34,12 +34,15 @@ class Solution(object):#完全是乘法
         for i in range(len(num1)):
             for j in range(len(num2)):
                 res[i + j] += int(num1[i]) * int(num2[j])
-                res[i + j + 1] += res[i + j] // 10#反的，所以是前面一位
-                res[i + j] %= 10#自己取余数
+                res[i + j + 1] += res[i + j] // 10#反的，所以是前面一位, 进位
+                res[i + j] %= 10#个位自己取余数
 
         # Skip leading 0s.
         i = len(res) - 1
         while i > 0 and res[i] == 0:
             i -= 1
 
-        return ''.join(map(str, res[i::-1]))
+        return ''.join(map(str, res[i::-1]))# res[i::-1]从i开始向左数到数列的开始
+    
+if __name__ == "__main__":
+    print(Solution().multiply('123', '456'))

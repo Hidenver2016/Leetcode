@@ -33,13 +33,11 @@ class Solution:# 此题是全都是unique单词，如果不是unqiue的，前面
             lookup = {w:i for i,w in enumerate(words)}
             res = []
             for i, w in enumerate(words):
-                for j in range(len(w)+1):#这里主要是考虑了单词断开的情况，一小半是一个字符串，一大半是另一个字符串
+                for j in range(len(w)+1):#这里主要是考虑了单词断开的情况，一小半是一个字符串，一大半是另一个字符串(取到w的最后一位)
                     pre, pos = w[:j], w[j:]
-                    if pre==pre[::-1] and pos[::-1] != w \
-                        and pos[::-1] in lookup:# w在后面，需要条件是，前一半自己对称（作为合成回文的中心）， 后一半的回文lookup里面有
+                    if pre==pre[::-1] and pos[::-1] != w and pos[::-1] in lookup:# w在后面，需要条件是，前一半自己对称（作为合成回文的中心）， 后一半的回文lookup里面有
                             res.append([lookup[pos[::-1]], i])
-                    if j != len(w) and pos==pos[::-1] \
-                        and pre[::-1] != w and pre[::-1] in lookup:#w在前面的情况，需要后面一半都是自对称的，而且前面一半的回文loopup里面有
+                    if j != len(w) and pos==pos[::-1] and pre[::-1] != w and pre[::-1] in lookup:#w在前面的情况，需要后面一半都是自对称的，而且前面一半的回文loopup里面有
                             res.append([i, lookup[pre[::-1]]])
             return res
         
@@ -69,10 +67,29 @@ class Solution1(object):
                     res.append([lookup[prefix[::-1]], i])
         return res
 
+class Solution2(object):# 这个方法超时了，但也过了80个test
+    def palindromePairs(self, words):
+        def Palincheck(s):
+            l, r = 0, len(s)-1
+            while l < r:
+                if s[l] != s[r]: return False
+                l += 1
+                r -= 1
+            return True
+        result = []
+        for i, w in enumerate(words):
+            for j in range(i+1, len(words)):
+                w1 = words[j]
+                temp1 = w + w1
+                temp2 = w1 + w
+                if Palincheck(temp1): result.append([i,j])
+                if Palincheck(temp2): result.append([j,i])
+        return result
+
 if __name__ == "__main__":
     s1 = ["slls","slls"]
     s2 = ["abcd","dcba","lls","s","sssll"]
-    print(Solution().palindromePairs(s1))
+    print(Solution2().palindromePairs(s2))
 
 
 

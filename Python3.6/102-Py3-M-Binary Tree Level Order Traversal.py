@@ -24,6 +24,23 @@ return its level order traversal as:
 https://blog.csdn.net/fuxuemingzhu/article/details/79616156
 这个题要和144， 94， 145， 102一起做
 """
+class Solution1(object):
+    def levelOrder(self, root):# 自己写的迭代，注意一下
+        if root == None: return []
+        myQueue = []
+        ans = []
+        node = root
+        myQueue.append(node)
+        while myQueue:
+            level = []#如果下面也写成while myQueue： 那么答案就是[[3,9,20,15,7]]，就是不分层了，全部一起输出
+            for i in range(len(myQueue)):#之后的变长对于这个是没有影响的，固定死了，所以一次是一层！！！
+                node = myQueue.pop(0)
+                level.append(node.val)
+                if node.left: myQueue.append(node.left)
+                if node.right: myQueue.append(node.right)
+            ans.append(level)
+        return ans
+
 import collections
 class Solution(object):
     def levelOrder(self, root):
@@ -63,22 +80,7 @@ class Solution(object):
                 myQueue.append(node.rch)
     
     
-class Solution1(object):
-    def levelOrder(self, root):# 自己写的迭代，注意一下
-        if root == None: return []
-        myQueue = []
-        ans = []
-        node = root
-        myQueue.append(node)
-        while myQueue:
-            level = []
-            for i in range(len(myQueue)):
-                node = myQueue.pop(0)
-                level.append(node.val)
-                if node.left: myQueue.append(node.left)
-                if node.right: myQueue.append(node.right)
-            ans.append(level)
-        return ans
+
     
     
     

@@ -52,7 +52,7 @@ Note:
 Version strings are composed of numeric strings separated by dots . and this numeric strings may have leading zeroes.
 Version strings do not start or end with dots, and they will not be two consecutive dots.
 版本是用.进行分割的，那么我们也只能通过用.进行分割来判定版本号的大小。把版本号进行分割，
-需要找出一个较长的版本号的长度，把较短的版本的后面用0进行补齐。恩，然后进行比较。
+需要找出一个较长的版本号的长度，把较短的版本的后面用0进行补齐。然后进行比较。
 """
 
 
@@ -83,7 +83,7 @@ class Solution(object):
     
     
 if __name__ == "__main__":
-    print(Solution().compareVersion("1.01", "1.001"))    
+    print(Solution().compareVersion("1.01", "1.0.01"))    
     
     
     

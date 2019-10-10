@@ -36,6 +36,9 @@ Output:
 --------------------- 
 原文：https://blog.csdn.net/fuxuemingzhu/article/details/79574462 
 """
+
+# Time:  O(n^2 ~ 2^n)
+# Space: O(n^2)
 class Solution(object):
     def partition(self, s):
         """
@@ -54,6 +57,9 @@ class Solution(object):
         for i in range(1, len(s) + 1): #注意起始和结束位置
             if self.isPalindrome(s[:i]):
                 self.helper(s[i:], res, path + [s[:i]])
+                
+if __name__ == "__main__":
+    print(Solution().partition('aab'))
 
 
      

@@ -20,6 +20,7 @@ Input: [1,null,2,3]
 Output: [1,3,2]
 Follow up: Recursive solution is trivial, could you do it iteratively?
 https://blog.csdn.net/fuxuemingzhu/article/details/79294461
+这个题要和144， 94， 145， 102一起做
 """
 # Definition for a binary tree node.
 # class TreeNode(object):
@@ -28,6 +29,33 @@ https://blog.csdn.net/fuxuemingzhu/article/details/79294461
 #         self.left = None
 #         self.right = None
 
+            
+class Solution2:
+    def inorderTraversal(self, root):#自己写的递归
+        if root == None: return
+        ans = []
+        if root.left != None:
+            ans.extend(self.inorderTraversal(root.left))
+        ans.append(root.val)
+        if root.right != None:
+            ans.extend(self.inorderTraversal(root. right))
+        return ans
+    
+class Solution3:
+    def inorderTraversal(self, root):#自己写的迭代
+        if root == None: return []
+        myStack = []
+        ans = []
+        node = root
+        while node or myStack:
+            while node:
+                myStack.append(node)
+                node = node.left
+            node = myStack.pop()
+            ans.append(node.val)
+            node = node.right
+        return ans
+    
 class Solution(object):
     def inorderTraversal(self, root): #递归
         """

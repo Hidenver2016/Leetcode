@@ -28,6 +28,20 @@ https://leetcode.com/problems/happy-number/
 若存在则跳出循环，并且判断此数是否为1，若为1返回true，不为1返回false，代码如下：
 """
 class Solution:
+    def isHappy1(self, num):#自己写的，效果也不错，可以看这个
+        str_num = str(num)
+        str_record = set()
+
+        while True:
+            res = 0
+            for i in range(len(str_num)):
+                res += int(str_num[i])**2
+            str_num = str(res)
+            if str_num not in str_record:
+                str_record.add(str_num)
+            elif int(str_num) == 1: return True
+            elif int(str_num) != 1: return False
+            
     def isHappy(self, n):
         mem = set()
         while n != 1:
@@ -38,3 +52,8 @@ class Solution:
                 mem.add(n)
         else:
             return True
+        
+
+            
+if __name__ == "__main__":
+    print(Solution().isHappy1(19))

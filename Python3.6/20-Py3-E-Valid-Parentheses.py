@@ -39,7 +39,7 @@ Created on Thu Oct 11 15:21:10 2018
 # Space: O(n)
 
 
-class Solution:
+class Solution:#多背诵一下人家的答案，简介，而且不用搞两遍
     # @return a boolean
     def isValid(self, s):
         stack, lookup = [], {"(": ")", "{": "}", "[": "]"}
@@ -50,9 +50,10 @@ class Solution:
                 return False
         return len(stack) == 0#如果此时不是一个零，那么表示最后估计还剩一个左括号，可能是开头，也可能是结尾
     
+    
 if __name__ == "__main__":
-#    print (Solution().isValid("()[]{}"))
-    print (Solution().isValid("[()]"))
+    print (Solution().isValid("()[]{}"))
+#    print (Solution().isValid("[()]"))
     
     
     

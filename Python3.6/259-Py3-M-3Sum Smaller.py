@@ -31,8 +31,8 @@ def threeSumSmaller(self, nums, target):
             if s < target:
                 # if (i,j,k) works, then (i,j,k), (i,j,k-1),..., 
                 # (i,j,j+1) all work, totally (k-j) triplets
-                count += k-j
-                j += 1
+                count += k-j# 注意这里， 比如是012345， k=5, j=2,那么就是[2,3],[2,4],[2,5]。而不是k-j+1，这个是长度，不是配对数
+                j += 1# 也要注意
             else:
                 k -= 1
     return count

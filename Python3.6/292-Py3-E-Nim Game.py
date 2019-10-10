@@ -23,7 +23,7 @@ Explanation: If there are 4 stones in the heap, then you will never win the game
              
 题目的意思是只要拿最后一个石子的人赢。
 
-因为每次最多拿三个，所以只要我拿走子之后，最后剩余四个的话，我就输了。
+因为每次最多拿三个，所以只要我开始的时候，剩余四个的话，我就输了。
 
 所以，所有子的个数不能被四整除我就赢了，否则我会输。输的原因是对手每次都拿4-n，n为当次我拿到子的个数。
 https://blog.csdn.net/fuxuemingzhu/article/details/51284421
