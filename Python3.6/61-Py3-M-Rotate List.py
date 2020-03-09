@@ -58,9 +58,10 @@ class Solution:
             k -= 1
         pre = slow
         while fast.next:#当fast到底之后，slow正好是倒数第k个
-            fast = fast.next
+            
             pre = slow
             slow = slow.next
+            fast = fast.next
         pre.next = None
         fast.next = root
         return slow
@@ -71,5 +72,5 @@ if __name__ == "__main__":
     head.next.next = ListNode(3)
     head.next.next.next = ListNode(4)
     head.next.next.next.next = ListNode(5)
-    print (Solution().rotateRight(head, 2))
+    print (Solution().rotateRight(head, 2).val)
 

@@ -44,9 +44,12 @@ class Solution(object):
         while left < right:
             mid1 = (left + right) // 2
             mid2 = mid1 + 1
-            if nums[mid1] < nums[mid2]:
-                left = mid2#峰值在右侧
+            if nums[mid1] >= nums[mid2]:
+                right = mid1#峰值在右侧
             else:
-                right = mid1#峰值在左侧
+                left = mid1 + 1 #峰值在左侧
         return left
 
+
+if __name__ == "__main__":
+    print(Solution().findPeakElement([1,2,1,3,5,6,4]))

@@ -94,7 +94,7 @@ class Solution:
 # You may assume that there will be only one unique solution.
 # 和n queens 一起做
 
-class Solution1:
+class Solution1:#思路还是backtracking
     # @param board, a 9x9 2D array
     # Solve the Sudoku by modifying the input board in-place.
     # Do not return any value.
@@ -137,3 +137,6 @@ class Solution1:
             return True
 
         solver(board)
+        
+        
+        

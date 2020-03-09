@@ -44,7 +44,7 @@ class Solution(object):
             head = temp#head去之前的下一个节点
         return newHead
     
-    def reverseList1(self, head):#高级迭代
+    def reverseList1(self, head):#高级迭代, 优先看这个
         """
         :type head: ListNode
         :rtype: ListNode

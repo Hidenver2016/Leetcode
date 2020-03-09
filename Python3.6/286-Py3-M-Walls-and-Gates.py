@@ -45,7 +45,7 @@ class Solution:
                 if a[i][j] == 0:#反向来找，从终点找起点，考虑门距离每一个空房间最小的距离
                     self.helper(i,j,a,0)
                        
-    def helper(self,x,y,a,dist):                                            #因为空房间都初始化为最大距离，会被更新，-1是障碍，不会更新
+    def helper(self,x,y,a,dist):  #因为空房间都初始化为最大距离，会被更新，-1是障碍，不会更新
         if x < 0 or y < 0 or x >= len(a) or y >= len(a[0]) or a[x][y] < dist:#小于距离的话就不用再找了，
                 return
         a[x][y] = dist

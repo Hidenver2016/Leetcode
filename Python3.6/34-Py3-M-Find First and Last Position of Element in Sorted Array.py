@@ -46,7 +46,7 @@ class Solution:
             return l
         l = search(target)
         print(l)
-        return [l, search(target+1)-1] if target in nums[l:l+1] else [-1, -1]
+        return [l, search(target+1)-1] if target in nums[l:] else [-1, -1]
         
 
 import bisect

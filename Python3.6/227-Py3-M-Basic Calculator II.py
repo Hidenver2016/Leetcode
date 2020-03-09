@@ -53,7 +53,7 @@ class Solution:
         for i, each in enumerate(s):
             if each.isdigit():
                 num = 10 * num + int(each)
-            if i == len(s) - 1 or each in '+-*/':
+            if i == len(s) - 1 or each in '+-*/':# 这里有个i==len(s)-1是因为没有括号，到了最后一位要开始计算才可以
                 if pre_op == '+':
                     stack.append(num)
                 elif pre_op == '-':
@@ -69,7 +69,7 @@ class Solution:
                         stack.append(top // num)
                 pre_op = each
                 num = 0
-        return sum(stack)
+        return sum(stack)# stack 最后是[14, -1]
     
 if __name__ == "__main__":
     s = "14-3/2"

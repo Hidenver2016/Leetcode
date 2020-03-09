@@ -32,6 +32,42 @@ class ListNode(object):
     def __repr__(self):		
         if self:		
             return "{} -> {}".format(self.val, self.next)
+        
+#
+# Time:  O(nlogk)
+# Space: O(k)
+# Heap solution.
+import heapq
+class Solution3:#看这个，这个用heap的最简单，其实和用priority queue一样
+    # @param a list of ListNode
+    # @return a ListNode
+    def mergeKLists(self, lists):
+        dummy = ListNode(0)
+        current = dummy
+        
+        heap = []
+        for sorted_list in lists:
+            if sorted_list:
+                heapq.heappush(heap, (int(sorted_list.val), sorted_list))#把head的val，和linkedlist都压入heap,而heap是按照head.val来排列的
+                
+        while heap:#上面压入的值和表头，所以下面出来的也是表头[1], 而值是[0]
+            smallest = heapq.heappop(heap)[1]#每次弹出最小的val对应的linkedlist 
+            current.next = smallest
+            current = current.next
+            if smallest.next:
+                heapq.heappush(heap, (smallest.next.val, smallest.next))#剩下的节点也要都放进去
+                
+        return dummy.next
+    
+
+
+if __name__ == "__main__":
+    list1 = ListNode(1)
+    list1.next = ListNode(3)
+    list2 = ListNode(2)
+    list2.next = ListNode(4)
+    
+    print(Solution3().mergeKLists([list1, list2]))
 #
 #
 ## Merge two by two solution.
@@ -97,41 +133,7 @@ class ListNode(object):
 #   
 #        return mergeKListsHelper(lists, 0, len(lists) - 1)
 #
-#
-# Time:  O(nlogk)
-# Space: O(k)
-# Heap solution.
-import heapq
-class Solution3:#看这个，这个用heap的最简单，其实和用priority queue一样
-    # @param a list of ListNode
-    # @return a ListNode
-    def mergeKLists(self, lists):
-        dummy = ListNode(0)
-        current = dummy
-        
-        heap = []
-        for sorted_list in lists:
-            if sorted_list:
-                heapq.heappush(heap, (sorted_list.val, sorted_list))#把head的val，和linkedlist都压入heap,而heap是按照head.val来排列的
-                
-        while heap:
-            smallest = heapq.heappop(heap)[1]#每次弹出最小的val对应的linkedlist
-            current.next = smallest
-            current = current.next
-            if smallest.next:
-                heapq.heappush(heap, (smallest.next.val, smallest.next))#剩下的节点也要都放进去
-                
-        return dummy.next
-    
 
-
-if __name__ == "__main__":
-    list1 = ListNode(1)
-    list1.next = ListNode(3)
-    list2 = ListNode(2)
-    list2.next = ListNode(4)
-    
-    print(Solution3().mergeKLists([list1, list2]))
     
     
 

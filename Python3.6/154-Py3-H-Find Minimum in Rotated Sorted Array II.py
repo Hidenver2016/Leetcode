@@ -30,6 +30,8 @@ https://blog.csdn.net/fuxuemingzhu/article/details/79536203
 思想就是如果出现了重复数字，那么二分查找就没有作用了，必须使用顺序查找了。
 
 这个题目意义不大，考得也很少
+
+与153一样
 """
 
 class Solution(object):
@@ -38,19 +40,19 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        p1, p2 = 0, len(nums) - 1
-        mid = p1
-        while nums[p1] >= nums[p2]:
-            if p2 - p1 == 1:
-                mid = p2
+        left, right = 0, len(nums) - 1
+        mid = left
+        while nums[left] >= nums[right]:
+            if left + 1 == right:
+                mid = right
                 break
-            mid = (p1 + p2) / 2
-            if nums[mid] == nums[p1] and nums[mid] == nums[p2]:
-                return self.minInOrder(nums, p1, p2)
-            if nums[mid] >= nums[p1]:
-                p1 = mid
-            elif nums[mid] <= nums[p2]:
-                p2 = mid
+            mid = (left + right) // 2
+            if nums[mid] == nums[left] and nums[mid] == nums[right]:#出现这种情况就是类似：[2,2,2，2，0,1,2]，只要找到第一个小于开头的数字就行了
+                return self.minInOrder(nums, left, right)
+            if nums[mid] >= nums[left]:
+                left = mid
+            elif nums[mid] <= nums[right]:
+                right = mid
         return nums[mid]
 
     def minInOrder(self, nums, index1, index2):
@@ -59,3 +61,19 @@ class Solution(object):
             if n1 > nums[i]:
                 return nums[i]
         return n1
+    
+if __name__ == "__main__":
+    nums = [2,2,0,1,2]
+    print(Solution().findMin(nums))
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

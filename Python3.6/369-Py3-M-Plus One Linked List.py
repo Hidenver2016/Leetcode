@@ -57,6 +57,13 @@ https://www.cnblogs.com/grandyang/p/5626389.html
 #        return reverseList(rev_head)
 # Time:  O(n)
 # Space: O(1)
+
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+        
+        
 class Solution(object):
     def plusOne(self, head):
         """
@@ -74,10 +81,28 @@ class Solution(object):
         while curr and carry:#这里要修改一下
             carry, curr.val = (curr.val + carry)//10, (curr.val + carry)%10
             if carry and curr.next is None:
-                curr.next = ListNode(0)
+                curr.next = ListNode(0)#下次加上进位即可，就是1
             curr = curr.next
 
         return reverseList(rev_head)
+    
+if __name__ == "__main__":
+    head = ListNode(9)
+#    head.next = ListNode(9)
+#    head.next.next = ListNode(3)
+#    head.next.next.next = ListNode(4)
+#    head.next.next.next.next = ListNode(5)
+
+    print (Solution().plusOne(head).next.val)
+    
+"""
+这里需要注意如果 
+a = Solution().plusOne(head)
+print(a.val)
+print(a.next.val) 会报错，因为此时a已经连加等于2，因此没有next
+
+可以按照上面的方法直接看
+"""
     
     
     

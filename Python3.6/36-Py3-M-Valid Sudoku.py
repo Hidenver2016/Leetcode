@@ -54,6 +54,9 @@ A Sudoku board (partially filled) could be valid but is not necessarily solvable
 Only the filled cells need to be validated according to the mentioned rules.
 The given board contain only digits 1-9 and the character '.'.
 The given board size is always 9x9.
+
+判断标准是看各行各列是否有重复数字，以及每个小的 3x3 的小方阵里面是否有重复数字，如果都无重复，则当前矩阵是数独矩阵
+
 https://leetcode.com/problems/valid-sudoku/discuss/15460/1-7-lines-Python-4-solutions
 此题要点： 
 第一： tuple相加很好seen += [(c,j),(i,c),(i//3,j//3,c)]

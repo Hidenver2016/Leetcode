@@ -55,62 +55,7 @@ def reorderList(self, head):#这个比较好理解！！！
 
 
 
-class Solution:
-    def splitList(self, head):
-        fast = head
-        slow = head
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next
-            fast = fast.next
-    
-        middle = slow.next
-        slow.next = None#前一半在此断开
-    
-        return head, middle
-    
-    # Reverses in place a list.
-    # @return Returns the head of the new reversed list
-    def reverseList(self, head):
-    
-      last = None
-      currentNode = head
-    
-      while currentNode:
-        nextNode = currentNode.next
-        currentNode.next = last
-        last = currentNode
-        currentNode = nextNode
-    
-      return last
-    
-    # Merges in place two lists
-    # @return The newly merged list.
-    def mergeLists(self, a, b):
-    
-        tail = a
-        head = a
-    
-        a = a.next
-        while b:
-            tail.next = b
-            tail = tail.next
-            b = b.next
-            if a:
-                a, b = b, a
-                
-        return head
-    # @param head, a ListNode
-    # @return nothing
-    def reorderList(self, head):
 
-        if not head or not head.next:
-            return
-
-        a, b = self.splitList(head)
-        b = self.reverseList(b)
-        head = self.mergeLists(a, b)
-        
         
 
 

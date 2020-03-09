@@ -31,8 +31,19 @@ https://blog.csdn.net/fuxuemingzhu/article/details/54341965#Python_112
 """
 # time O(n+nlogn)
 # space: O(5+length(res))
+"""
+Python排序+双指针
+看到题目说了如果已经排序了会怎么样，这是一个很明显的需要排序的提示，告诉我们先排序。
+下面的操作就像merge两个有序链表差不多，分别从两个的起始位置判断是否相等即可。
+
+需要注意的是题目要求的是结果中的出现次数等于两个数组交集部分的次数，
+所以当两个数组元素相等的时候需要把两个指针同时右移。
+
+时间复杂度O(NlogN)，空间复杂度O(1).
+
+"""
 class Solution:
-    def intersect(self, nums1, nums2):
+    def intersect(self, nums1, nums2):#移位
         """
         :type nums1: List[int]
         :type nums2: List[int]
@@ -53,9 +64,16 @@ class Solution:
             else:
                 l2 += 1
         return res
+    
+"""
+Python解法使用字典
+使用字典对两个数组出现的数字进行统计，然后直接判断数字是否在另一个字典里出现过，把结果直接拼接上两个的最小次数个当前数字。
+
+时间复杂度O(N)，空间复杂度O(N).打败了98%的提交
+"""
 import collections    
 class Solution1:
-    def intersect(self, nums1, nums2):
+    def intersect(self, nums1, nums2):#相乘
         """
         :type nums1: List[int]
         :type nums2: List[int]

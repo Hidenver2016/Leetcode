@@ -91,7 +91,7 @@ class Solution(object):
                 res = 0
                 sign = 1
             elif c == ")":#此时出栈
-                res = res + sign * num
+                res = res + sign * num# 先计算括号里面的结果
                 num = 0 # num是当前值，每次计算之后都要归零，好取下一个
                 res *= stack.pop()#这里是乘上括号之前是加号或者减号，这个就是考虑到了取掉括号之后有可能要变号（括号前面是减号）
                 res += stack.pop()#这里是括号内的结果加上之前计算的结果

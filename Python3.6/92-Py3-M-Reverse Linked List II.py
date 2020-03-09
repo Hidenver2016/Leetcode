@@ -27,14 +27,14 @@ class Solution1:
             return head
         p = dummy = ListNode(0)
         dummy.next = head
-        for _ in range(m - 1):
+        for _ in range(m - 1):#到m前一位
             p = p.next
-        cur = p.next
+        cur = p.next #m 位
         pre = None
         for _ in range(n - m + 1):
             cur.next, pre, cur = pre, cur, cur.next
-        p.next.next = cur
-        p.next = pre
+        p.next.next = cur#这里是让2指向5，p是1，cur是5
+        p.next = pre #pre是换过顺序以后的4，让1连接4
         return dummy.next
 
 class Solution:

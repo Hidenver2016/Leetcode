@@ -31,6 +31,9 @@ You may assume that all operations are valid (for example,
 no pop or peek operations will be called on an empty queue).
 https://blog.csdn.net/fuxuemingzhu/article/details/51345762
 And other refers
+用向右pop实现queue的左向pop
+
+155， 232， 225 这三个属于相互实现的题，要注意
 """
 #push O(1), pop amortized O(1)
 class MyQueue:

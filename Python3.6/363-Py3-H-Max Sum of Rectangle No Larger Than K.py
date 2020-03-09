@@ -45,43 +45,44 @@ https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E5%88%97%E9%9
 
 在代码实现上，我们只需要让 m 永远小于 n即可。这样复杂度总是为O(m^2*n*log n)
 
-这个题太难，还是用暴力解法算了，考虑Kadane_algorithm file, 臣妾做不到，只能理解这么多了
+这个题太难，还是用暴力解法算了，考虑Kadane_algorithm file, 臣妾做不到，只能理解这么多了（现在可以理解了）
+这里有解释https://zhuanlan.zhihu.com/p/96014673
 """
 # Time:  O(min(m, n)^2 * max(m, n) * log(max(m, n)))
 # Space: O(max(m, n))
 
-#from bisect import bisect_left, insort_right
-#
-#class Solution(object):
-#    def maxSumSubmatrix(self, matrix, k):
-#        """
-#        :type matrix: List[List[int]]
-#        :type k: int
-#        :rtype: int
-#        """
-#        if not matrix:
-#            return 0
-#
-#        m = min(len(matrix), len(matrix[0]))
-#        n = max(len(matrix), len(matrix[0]))
-#        result = float("-inf")
-#
-#        for i in range(m): #这个是针对行，进行列的求和
-#            sums = [0] * n
-#            for j in range(i, m):# 往下走
-#                for l in range(n):# 往右走
-#                    sums[l] += matrix[j][l] if m == len(matrix) else matrix[l][j]
-#
-#                # Find the max subarray no more than K. 返回最接近K的值 这个地方有问题
-#                accu_sum_set, accu_sum = [0], 0
-#                for sum in sums:
-#                    accu_sum += sum
-#                    it = bisect_left(accu_sum_set, accu_sum - k)  # Time: O(logn) 放置于左边，求左边的index, accu_sum - k 就是 sum-k
-#                    if it != len(accu_sum_set):
-#                        result = max(result, accu_sum - accu_sum_set[it]) # accu_sum_set[it]就是序列中最接近sum-k的数，这里有个减号，就是想让x最小
-#                    insort_right(accu_sum_set, accu_sum)  # Time: O(n) 放置于右边
-#
-#        return result
+from bisect import bisect_left, insort_right
+
+class Solution(object):
+    def maxSumSubmatrix(self, matrix, k):# 看这个，这个Kadane算法是用来找最小的x 
+        """
+        :type matrix: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        if not matrix:
+            return 0
+
+        m = min(len(matrix), len(matrix[0]))
+        n = max(len(matrix), len(matrix[0]))
+        result = float("-inf")
+
+        for i in range(m): #这个是针对行，进行列的求和，（列数大于行数的情况下） 两个m的循环，证明考虑了m中的子方块
+            sums = [0] * n
+            for j in range(i, m):# 往下走
+                for l in range(n):# 往右走
+                    sums[l] += matrix[j][l] if m == len(matrix) else matrix[l][j]
+
+                # Find the max subarray no more than K. 返回最接近K的值 这个地方有问题
+                accu_sum_set, accu_sum = [0], 0
+                for sum in sums:
+                    accu_sum += sum
+                    it = bisect_left(accu_sum_set, accu_sum - k)  # Time: O(logn) 放置于左边，求左边的index, accu_sum - k 就是 sum-k， 寻找x的位置
+                    if it != len(accu_sum_set):#如果相等，证明accu_sum太大了，result不更新
+                        result = max(result, accu_sum - accu_sum_set[it]) # accu_sum_set[it]就是序列中最接近sum-k的数，这里有个减号，就是想让x最小，accu_sum - accu_sum_set[it]最接近k
+                    insort_right(accu_sum_set, accu_sum)  # Time: O(n) 放置于右边， 上面一行就是sum-x,是能力范围之内的，最接近的sum-x, 就是要的result
+
+        return result
     
     
 """
@@ -114,7 +115,7 @@ Kadane algorithm
 
 
 class Solution1:
-    def maxSumSubmatrix(self, matrix, k):#先记住这个好了
+    def maxSumSubmatrix(self, matrix, k):#先记住这个好了,这个会超时
         if not matrix or not matrix[0]: return 0
         m = len(matrix[0]); n = len(matrix); res = -float("inf")
         sum1 = [[0 for _ in range(m)] for _ in range(n)]
@@ -138,7 +139,7 @@ class Solution1:
 if __name__ == "__main__":
     matrix = [[5,-4,-3,4],[-3,-4,4,5],[5,1,5,-4]]; k = 3
 
-    print(Solution1().maxSumSubmatrix(matrix, k))
+    print(Solution().maxSumSubmatrix(matrix, k))
                         
                             
     

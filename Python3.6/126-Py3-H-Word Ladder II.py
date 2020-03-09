@@ -44,6 +44,8 @@ https://zxi.mytechroad.com/blog/searching/leetcode-126-word-ladder-ii/
 https://leetcode.com/problems/word-ladder-ii/discuss/40482/Python-simple-BFS-layer-by-layer
 https://leetcode.com/problems/word-ladder-ii/discuss/40549/FAST-AND-CLEAN-PythonC%2B%2B-Solution-using-Double-BFS-beats-98
 
+与127不同的地方在于需要把所有符合要求的路径打印出来
+
 """
 #Python simple BFS layer by layer
 import collections
@@ -57,7 +59,7 @@ class Solution(object):
 
         while layer:
             newlayer = collections.defaultdict(list)#存储下一步，找到下一个新单词（这里是对于layer中每一个路径的，每一个w）
-            for w in layer:
+            for w in layer: # w是layer中的keys
                 if w == endWord: 
                     res.extend(k for k in layer[w])# layer[w]的value表示前面一个单词
                 else:
@@ -71,8 +73,8 @@ class Solution(object):
 #                                print('---')
 #                                print('layer is', layer)
 #                                print('***')
-
-            wordList -= set(newlayer.keys())#把访问过的值减去，不走回头路
+#注意62行 ‘for w in layer:’， 这个删除是在所有路径走完之后的删除，所以不会（有的词删早了）影响一次更新中的多条路径
+            wordList -= set(newlayer.keys())#把访问过的值减去，不走回头路, 
 #            print('wordList is', wordList)
 #            print('$$$$$$$$$$$$$$$$$$$$$$$$$$')
             layer = newlayer#进入下一层

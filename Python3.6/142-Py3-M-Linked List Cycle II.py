@@ -42,6 +42,10 @@ Follow up:
 Can you solve it without using extra space?
 https://www.cnblogs.com/grandyang/p/4137302.html
 https://blog.csdn.net/fuxuemingzhu/article/details/79530638
+这个题要看leetcode的图才可以
+
+还是快慢指针，相遇之后，慢指针回到开头，快慢指针同步走，再相遇的点就是要找的点
+
 下面要证明如果相遇之后，慢指针回到原点继续走再相遇的点在O点。
 
 

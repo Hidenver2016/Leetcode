@@ -29,10 +29,10 @@ class ListNode:
         self.val = x
         self.next = None
 
-class Solution:
+class Solution:#关键句子，pre.next = b, 把2放在最前面， b.next = a, 让2连接1， a.next = b.next, 让1连接3； 最后pre = a, 让从新的1开始，后面是3->4又是一样的
     # @param a ListNode
     # @return a ListNode    
-    def swapPairs(self, head):#比较容易理解,看这个把
+    def swapPairs(self, head):#这个感觉也好理解了，感觉更好记忆一点，参见p286（p277） Python script的图
         pre, pre.next = self, head
         while pre.next and pre.next.next:#一定要查看是不是一次有一对，要不是就不用换了
             a = pre.next#第一个
@@ -43,7 +43,7 @@ class Solution:
     
     
     # Iteratively
-    def swapPairs1(self, head):#                                                     迭代看这个
+    def swapPairs1(self, head):# 现在觉得这个比较简单                                              迭代看这个
         dummy = p = ListNode(0)#dummy和p这时候都是在开头，接着p操作交换，最后还是返回dummy.next，指向列表头
         dummy.next = head
         while head and head.next:#注意这个地方p的后面是head，
@@ -51,8 +51,8 @@ class Solution:
             head.next = tmp.next#连接1->3
             tmp.next = head#连接2—>1
             p.next = tmp#把2放在开头
-            head = head.next#把head移动到第三个位置
-            p = tmp.next#把p也移动到第二个位置
+            head = head.next#把head移动到第三个位置（原来的数字3的位置，3其实没动）
+            p = tmp.next#把p也移动到第二个位置（现在的1的位置，原来2的位置）
         return dummy.next
      
     # Recursively    
@@ -86,6 +86,6 @@ if __name__ == "__main__":
     head.next.next = ListNode(3)
     head.next.next.next = ListNode(4)
 #    head.next.next.next.next = ListNode(5)
-    print (Solution().swapPairs1(head))
+    print (Solution().swapPairs(head))
     
     

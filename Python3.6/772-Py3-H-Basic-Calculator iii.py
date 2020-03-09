@@ -51,7 +51,7 @@ class Solution:#此题与227基本一样，注意遇到括号直接开始新的s
                     i += 1
                 elif c == '(':
                     num, i = helper([], i+1)#遇到括号直接开始新的stack即可
-                else:
+                else:#遇到运算符号了
                     if sign == '+':
                         stack.append(num)
                     if sign == '-':

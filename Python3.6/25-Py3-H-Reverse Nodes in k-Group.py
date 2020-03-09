@@ -23,6 +23,8 @@ Note:
 
 Only constant extra memory is allowed.
 You may not alter the values in the list's nodes, only nodes itself may be changed.
+
+这个题是24的拓展，24相当于令k=2
 """
 
 

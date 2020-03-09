@@ -23,6 +23,9 @@ return 13.
 Note: 
 You may assume k is always valid, 1 ≤ k ≤ n2.
 O(n^2 * log n). Space complexity is O(n^2).
+
+这个题不同于一般二分法的题目，这个题会直接把数字算出来，而不是像其他二分法直接算一个序号
+所以这个题用二分法其实次数也不会少！！！
 """
 import bisect
 class Solution:
@@ -46,12 +49,12 @@ class Solution1(object):
                 r = m
             else:
                 l = m + 1
-        return l
+        return l# l不是序号，是直接用二分法逼近的最后结果
     
 if __name__ == "__main__":
     matrix = [
             [ 1,  5,  9],
-            [10, 11, 13],
+            [10, 11, 15],
             [12, 18, 35]]
-    k = 8
+    k = 9
     print(Solution1().kthSmallest(matrix,k))

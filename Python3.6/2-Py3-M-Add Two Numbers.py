@@ -21,7 +21,7 @@ Explanation: 342 + 465 = 807.
 """
 
 class Solution(object):
-    def addTwoNumbers(self, l1, l2):
+    def addTwoNumbers(self, l1, l2):#暴力法不推荐
         """
         :type l1: ListNode
         :type l2: ListNode
@@ -48,8 +48,8 @@ class Solution(object):
 这个题目不用倒序，链表第一位就是各位，所以可以直接求
 """
     
-class Solution(object):
-    def addTwoNumbers(self, l1, l2):
+class Solution1(object):
+    def addTwoNumbers(self, l1, l2):#看这个
         carry = 0
         root = n = ListNode(0)
         while l1 or l2 or carry:
@@ -65,4 +65,25 @@ class Solution(object):
             n.next = ListNode(val)
             n = n.next
         return root.next
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
 

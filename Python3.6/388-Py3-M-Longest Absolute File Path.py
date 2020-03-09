@@ -71,7 +71,7 @@ class Solution(object):
                 max_len = max(max_len, len(p) + stack[-1][1])
         return max_len
     
-class Solution1(object):#这个方法快很多，思路是类似的
+class Solution1(object):#这个方法快很多，思路是类似的,看这个
     def lengthLongestPath(self, input):
         maxlen = 0
         pathlen = {0: 0}#建立字典，key是深度，value是总长度
@@ -79,8 +79,8 @@ class Solution1(object):#这个方法快很多，思路是类似的
             name = line.lstrip('\t')
             depth = len(line) - len(name)#对于不同等级的目录，前面的\t不一样，有几个\t就表示深度是几
             if '.' in name:
-                maxlen = max(maxlen, pathlen[depth] + len(name))
-            else:#这个字典里面的key就是深度
+                maxlen = max(maxlen, pathlen[depth] + len(name))# 对于真正的文件，直接读取长度作为结果，下面的只是读取文件的目录长度
+            else:#这个字典里面的key就是深度， 这里计算下一层的目录长度
                 pathlen[depth + 1] = pathlen[depth] + len(name) + 1#这里采取的是覆盖的方法，不用再弹出了，直接把新的目录长度覆盖就可以了
         return maxlen
 

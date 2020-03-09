@@ -32,6 +32,8 @@ You may assume that all operations are valid (for example,
 no pop or top operations will be called on an empty stack).
 https://blog.csdn.net/fuxuemingzhu/article/details/72598111
 用queue的popleft来操作stack的pop
+
+155， 232， 225 这三个属于相互实现的题，要注意
 """
 import collections
 class MyStack(object):

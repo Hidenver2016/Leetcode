@@ -25,7 +25,7 @@ GeekstoGeeks
 # Space: O(1)
 
 class Solution(object):
-    def maxSubArray(self, nums):
+    def maxSubArray(self, nums):#这个方法是最优解
         """
         :type nums: List[int]
         :rtype: int
@@ -37,6 +37,35 @@ class Solution(object):
             local_max = max(x, local_max + x)#这两句非常重要！！！
             global_max = max(global_max, local_max)
         return global_max
+    
+class Solution4: #方法4，5是次优解， 因为空间是n
+    def maxSubArray(self, nums):
+        dp = [0]*len(nums)
+        tmp = 0
+        for i in range(len(nums)):
+            tmp += nums[i]
+            if tmp >= 0:
+                dp[i] = tmp
+            else:
+                dp[i] = nums[i]
+                tmp = 0
+        return int(max(dp))
+    
+class Solution5(object):
+    def maxSubArray(self, nums):#这个比我的看上去更加简洁
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        dp = [float("-inf")] * len(nums)
+        dp[0] = nums[0]
+        for i in range(1,len(nums)):
+            if dp[i-1] <= 0:
+                dp[i] = nums[i]
+            else:
+                dp[i] = dp[i-1]+nums[i]
+                
+        return max(dp)
 
 
 class Solution2: #这个是divide and conquer   
@@ -94,6 +123,9 @@ class Solution3:
                     max_res = sum(nums[i:j])
                     res = nums[i:j]
         return res, max_res
+    
+
+
 
 if __name__ == "__main__":
-    print(Solution().maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
+    print(Solution3().maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))

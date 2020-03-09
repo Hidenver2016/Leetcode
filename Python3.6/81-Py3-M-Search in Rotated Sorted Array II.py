@@ -27,13 +27,15 @@ Would this affect the run-time complexity? How and why?
 
 33, 81一起做
 
+此题是有重复数字的33题
+
 这样的话，如果直接进行左右指针的比较就不知道向哪个方向搜索了，所以，需要在正式比较之前，
 先移动左指针，是他指向一个和右指针不同的数字上。然后再做33题的查找
 
 https://blog.csdn.net/fuxuemingzhu/article/details/83214278
 """
 class Solution(object):
-    def search(self, nums, target):
+    def search(self, nums, target):#就这么写好了，验证了也是对的
         """
         :type nums: List[int]
         :type target: int
@@ -44,17 +46,28 @@ class Solution(object):
         while l <= r:
             while l < r and nums[l] == nums[r]:
                 l += 1
-            mid = l + (r - l) / 2
+            mid = l + (r - l) // 2
             if nums[mid] == target:
                 return True
-            if nums[mid] >= nums[l]:
-                if nums[l] <= target < nums[mid]:
-                    r = mid - 1
-                else:
-                    l = mid + 1
-            elif nums[mid] <= nums[r]:
+            if nums[mid] <= nums[r]:
                 if nums[mid] < target <= nums[r]:
                     l = mid + 1
                 else:
                     r = mid - 1
+            else:
+                if nums[l] <= target < nums[mid]:
+                    r = mid - 1
+                else:
+                    l = mid + 1
         return False
+#            if nums[mid] >= nums[l]:
+#                if nums[l] <= target < nums[mid]:
+#                    r = mid - 1
+#                else:
+#                    l = mid + 1
+#            elif nums[mid] <= nums[r]:
+#                if nums[mid] < target <= nums[r]:
+#                    l = mid + 1
+#                else:
+#                    r = mid - 1
+#        return False

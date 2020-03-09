@@ -35,14 +35,14 @@ class Solution(object):
         if len(nums) == 1: return nums[0]
         left, right = 0, len(nums) - 1
         mid = left
-        while nums[left] >= nums[right]:
-            if left + 1 == right:
+        while nums[left] >= nums[right]:#满足这个条件必然是已经转动过的数列了
+            if left + 1 == right:#最小值必然在最大值之后一位
                 mid = right
                 break
-            mid = (left + right) / 2
-            if nums[mid] >= nums[left]:
-                left = mid
-            elif nums[mid] <= nums[right]:
+            mid = (left + right) // 2
+            if nums[mid] >= nums[left]:#如果左边是有顺序的
+                left = mid#最小的数在右边
+            elif nums[mid] <= nums[right]:#如果右边是有顺序的
                 right = mid
         return nums[mid]
 

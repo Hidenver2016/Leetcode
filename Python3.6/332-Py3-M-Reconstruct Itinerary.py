@@ -51,7 +51,7 @@ class Solution(object):
         graph = collections.defaultdict(list)
         for frm, to in tickets:
             graph[frm].append(to)
-        for frm, tos in graph.items():
+        for frm, tos in graph.items():#这里主要是为了字母的alphabeta顺序，题目要求的
             tos.sort(reverse=True)#在这里先反向，因为后面是后序查找，找出来也是反向的，最后才能保证是正向的（看花花的图）
         res = []
         self.dfs(graph, "JFK", res)
@@ -60,7 +60,7 @@ class Solution(object):
     def dfs(self, graph, source, res):
         while graph[source]:
             v = graph[source].pop()
-            self.dfs(graph, v, res)
+            self.dfs(graph, v, res)# 也是最后的先弹出 JFK:[SFO, ATL], 先弹出 ATL
         res.append(source)
 
 

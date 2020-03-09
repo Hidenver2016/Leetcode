@@ -47,13 +47,13 @@ if they are adjacent cells connected horizontally or vertically.
 
 # BFS
 class Solution2:
-    def solve(self, board):
+    def solve(self, board):#要看这个bfs
         queue = []
         for row in range(len(board)):
             for col in range(len(board[0])):
-                if (row in [0, len(board)-1] or col in [0, len(board[0])-1]) and board[row][col] == "O":
+                if (row in [0, len(board)-1] or col in [0, len(board[0])-1]) and board[row][col] == "O":#先搞边界
                     queue.append((row, col))
-        while queue:
+        while queue:#把与边界的o相连的o都换成D
             row, col = queue.pop(0)
             if 0 <= row < len(board) and 0 <= col < len(board[0]) and board[row][col] == "O":
                 board[row][col] = "D"
@@ -67,7 +67,7 @@ class Solution2:
                 elif board[row][col] == "D": board[row][col] = "O"
 #        return board
 # DFS 爆栈，不建议用              
-class Solution3:#
+class Solution3:#貌似跑出来的答案也不对啊
     def solve(self, board):
         m, n = len(board), len(board[0])
         for row in range(m):
@@ -79,7 +79,7 @@ class Solution3:#
             for col in range(n):
                 if board[row][col] == 'O': board[row][col] = 'X'
                 elif board[row][col] == 'D': board[row][col] = 'O'
-#        return board
+        return board
     
     def helper(self, board, row, col, m, n):
         if row < 0 or row >= m or col < 0 or col >= n or board[row][col] != 'O': return
@@ -90,7 +90,7 @@ class Solution3:#
         self.helper(board, row, col + 1, m, n)
         
 if __name__ == "__main__":
-    Input = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]
+    Input = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","O","X"]]
     print(Solution2().solve(Input))
         
     

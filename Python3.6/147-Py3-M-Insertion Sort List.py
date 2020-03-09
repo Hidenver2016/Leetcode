@@ -59,3 +59,14 @@ class Solution(object):
                 temp.next = q.next
                 q.next = temp
         return root.next
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

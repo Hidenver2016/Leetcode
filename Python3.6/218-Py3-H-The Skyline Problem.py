@@ -37,6 +37,13 @@ The output list must be sorted by the x position.
 There must be no consecutive horizontal lines of equal height in the output skyline. 
 For instance, [...[2 3], [4 5], [7 5], [11 5], [12 7]...] is not acceptable; 
 the three lines of height 5 should be merged into one in the final output as such: [...[2 3], [4 5], [12 7], ...]
+核心： 对于楼的（左侧，高度）和（-高度，右侧）建立两个list, 分别是res和hp; 其中（-高度，右侧）是一个heapq,自动把当前最大高度 放在最前
+每次弹出event（左侧，-高度，右侧）， 当当前扫描的楼的左侧大于目前最大高度的右侧时（-高度，右侧）， 自动在hp中弹出。
+while l >= hp[0][1]:
+    heapq.heappop(hp)
+而存储是，保存当前的左侧l, 以及最大高度
+if res[-1][1] != -hp[0][0]:# res[-1][1] 记录的是当前的最高值，既有上升也有下降，所以不能简单的用大于或者小于
+    res.append([l, -hp[0][0]])
 """
 import heapq
 class Solution:
@@ -51,29 +58,29 @@ class Solution:
         # 所以, event 不仅需要按第一个元素 position 排序, 在 position 相同时, 第二个元素 h 也是必须有序的
 #        events = sorted([(l, -h, r) for l, r, h in buildings] + list({(r, 0, 0) for l, r, h in buildings}))
         events = [(L, -H, R) for L, R, H in buildings]
-        events += list({(R, 0, 0) for _, R, _ in buildings})
+        events += list({(R, 0, 0) for _, R, _ in buildings})# 这里是为了加上结束的条件，要不是楼就不知道什么时候结束了
         events.sort()
         
 
         """
-        这里，res = [[位置，高度]]； hp = [(高度，终止位置（右坐标）)]
+        这里，res = [[左边的位置，高度]]； hp = [(高度，终止位置（右坐标）)]
         """
-        res, hp = [[0, 0]], [(0, float('inf'))]
+        res, hp = [[0, 0]], [(0, float('inf'))]# 最右边放置的一个地面，作为终结
 
         for l, neg_h, r in events:
-            while l >= hp[0][1]: #如果左坐标大于右坐标，那么可以弹出了。
+            while l >= hp[0][1]: #如果左坐标大于右坐标，那么右边的建筑（在hp里面）可以弹出了。
                 heapq.heappop(hp)#这里需要注意的是hp是一个堆，那么第0个值就是最小值，对应最大高度
             
             # 如果是有高度，自动添加
             if neg_h:
-                heapq.heappush(hp, (neg_h, r))
+                heapq.heappush(hp, (neg_h, r))#每一个楼的右边边界
             
             """
-            这个地方，由于hp中自动记住最大高度-hp[0][0], 所以只有大于res中最后高度的才会被添加到res中
+            这个地方，由于hp中自动记住最大高度-hp[0][0], 相同位置的最大高度会被记录
             同时，由于前面的heappop, 那些过界的高度也会被丢弃，这样矮的高度也会被添加进来
             """
 #            if res[-1][1] != -hp[0][0]:
-            if res[-1][1] != -hp[0][0]:
+            if res[-1][1] != -hp[0][0]:# res[-1][1] 记录的是当前的最高值，既有上升也有下降，所以不能简单的用大于或者小于
                 res.append([l, -hp[0][0]])
         
         return res[1:]

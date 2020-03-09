@@ -61,3 +61,9 @@ class Solution(object):
 if __name__ == "__main__":
     updates = [[1,3,2],[2,4,3],[0,2,-2]]
     print(Solution().getModifiedArray(5, updates))
+    
+    
+    
+    
+    
+    

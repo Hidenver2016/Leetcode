@@ -21,10 +21,11 @@ class Solution(object):
     def merge(self, h1, h2):
         dummy = tail = ListNode(None)
         while h1 and h2:
-            if h1.val < h2.val:
-                tail.next, tail, h1 = h1, h1, h1.next
-            else:
-                tail.next, tail, h2 = h2, h2, h2.next
+                    if h1.val < h2.val:
+                        tail.next, h1 = h1, h1.next
+                    else:
+                        tail.next, h2 = h2, h2.next
+                    tail = tail.next
     
         tail.next = h1 or h2
         return dummy.next
@@ -53,7 +54,7 @@ Merge排序就是先划分成一前一后等分的两块，然后对两块分别
 事实上，这个答案里面并不是O(1)的空间，因为，第一，添加了新的链表头的个数会随着递归的次数而不断增加，并不是常量个；第二，递归本身就不是常量空间。
 
 """
-class Solution(object):#这个容易记忆一点
+class Solution(object):#这个容易记忆一点, 看这个
     def sortList(self, head):
         """
         :type head: ListNode

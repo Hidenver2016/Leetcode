@@ -22,6 +22,8 @@ minStack.pop();
 minStack.top();      --> Returns 0.
 minStack.getMin();   --> Returns -2.
 https://blog.csdn.net/fuxuemingzhu/article/details/79253237
+
+155， 232， 225 这三个属于相互实现的题，要注意
 """
 class MinStack(object):
 

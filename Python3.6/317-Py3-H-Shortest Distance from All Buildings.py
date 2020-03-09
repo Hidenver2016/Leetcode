@@ -21,6 +21,14 @@ Input: [[1,0,2,0,1],[0,0,0,0,0],[0,0,1,0,0]]
 0 - 0 - 0 - 0 - 0
 |   |   |   |   |
 0 - 0 - 1 - 0 - 0
+dists
+[[0, 9, 0, 9, 0], 
+ [9, 8, 7, 8, 9],
+ [10, 9, 0, 9, 10]]
+cnts
+[[0, 3, 0, 3, 0],
+ [3, 3, 3, 3, 3],
+ [3, 3, 0, 3, 3]]
 
 Output: 7 
 
@@ -30,7 +38,9 @@ Explanation: Given three buildings at (0,0), (0,4), (2,2), and an obstacle at (0
 Note:
 There will be at least one building. If it is not possible to build such house according to the above rules, return -1.
 
-这个题目比较难，思想是以每一个楼为起点用BFS建立一个dist的距离场（到各个0位置的），直到遍历完所有的建筑物
+这个题就是多了一个障碍和296比较
+先建立距离场（从每一个建筑开始，用BFS一遍遍（次数等于建筑的数目）的计算到0位置的距离的总和），然后再计算最小值
+这个题目比较难，思想是以每一个楼为起点用BFS建立一个dist的距离场（每一个建筑到各个0位置的总和），直到遍历完所有的建筑物
 cnts矩阵是说明对于每一个0位置，计算过几个建筑物。cnts[i][j] == cnt表示所有的建筑物都考虑了，才进行最小值求解
 """
 
@@ -57,7 +67,7 @@ class Solution(object):
                     for dir in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
                         I, J = i+dir[0], j+dir[1]
                         if 0 <= I < m and 0 <= J < n and grid[I][J] == 0 and not visited[I][J]:#自动避开2，1等不能够通过的点
-                            cnts[I][J] += 1
+                            cnts[I][J] += 1#这个地方满足if grid[i][j] == 1才进来bfs的，所以cnts矩阵中就是每一个零位置来访问的建筑的数量
                             dists[I][J] += dist
                             cur_level.append((I, J))
                             visited[I][J] = True
@@ -70,7 +80,7 @@ class Solution(object):
         cnts = [[0 for _ in range(n)] for _ in range(m)]#每个位置计算过的建筑数量
         for i in range(m):
             for j in range(n):
-                if grid[i][j] == 1:
+                if grid[i][j] == 1:#从每一个建筑开始，计算到0位置的距离，这里也是为什么时间复杂度会有一个k
                     cnt += 1#总建筑数量
                     bfs(grid, dists, cnts, i, j)
 

@@ -27,17 +27,17 @@ https://blog.csdn.net/fuxuemingzhu/article/details/79616156
 class Solution1(object):
     def levelOrder(self, root):# 自己写的迭代，注意一下
         if root == None: return []
-        myQueue = []
+        que = []
         ans = []
         node = root
-        myQueue.append(node)
-        while myQueue:
-            level = []#如果下面也写成while myQueue： 那么答案就是[[3,9,20,15,7]]，就是不分层了，全部一起输出
-            for i in range(len(myQueue)):#之后的变长对于这个是没有影响的，固定死了，所以一次是一层！！！
-                node = myQueue.pop(0)
+        que.append(node)
+        while que:
+            level = []#如果下面也写成while que： 那么答案就是[[3,9,20,15,7]]，就是不分层了，全部一起输出
+            for i in range(len(que)):#之后的变长对于这个是没有影响的，固定死了，所以一次是一层！！！
+                node = que.pop(0)
                 level.append(node.val)
-                if node.left: myQueue.append(node.left)
-                if node.right: myQueue.append(node.right)
+                if node.left: que.append(node.left)
+                if node.right: que.append(node.right)
             ans.append(level)
         return ans
 
