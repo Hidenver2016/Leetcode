@@ -59,8 +59,8 @@ class RandomizedCollection(object):
             out, ins = self.idxs[val].pop(), self.vals[-1]# 例如 vals=[a,b,a,c], idx = {'a':{0,2}, 'b':{1}, 'c':{3}} 那么out = 0，ins = 'c'
             self.vals[out] = ins#先把最后一个值保存在要删除的值的位置， val = [c,b,a,c]
 #            if self.idxs[ins]:
-            self.idxs[ins].add(out)#更新idxs idx = {'a':{0,2}, 'b':{1}, 'c':{0,3}}
-            self.idxs[ins].discard(len(self.vals) - 1)# 更新idx idx = {'a':{0,2}, 'b':{1}, 'c':{0}}
+            self.idxs[ins].add(out)#更新idxs idx = {'a':{2}, 'b':{1}, 'c':{0,3}}
+            self.idxs[ins].discard(len(self.vals) - 1)# 更新idx idx = {'a':{2}, 'b':{1}, 'c':{0}}
             self.vals.pop()# 更新vals, vals = [c,b,a]
             return True
         return False 

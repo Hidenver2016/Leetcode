@@ -17,11 +17,15 @@ Example:
 
 Input: [0,1,0,2,1,0,1,3,2,1,2,1]
 Output: 6
+关键是思路：先找最大值，然后从左边开始向最大值过一遍；然后从最右向最大值过一遍。
+原理：里面的水（从左向右或从右向左）会被外面高的挡住 
+关键代码： result += A[second_top] - A[i]
+
 """
 # Time:  O(n)
 # Space: O(1)
-
-class Solution(object):
+#
+class Solution(object):#看这个把
     # @param A, a list of integers
     # @return an integer
     def trap(self, A):
@@ -54,12 +58,12 @@ http://www.cnblogs.com/grandyang/p/4402392.html
 """    
     
 class Solution1:
-    def trap(self, A):
+    def trap(self, A):# 这个太难理解了
         l, r =0, len(A)-1
         level, res = 0, 0
         while l < r:
-            if A[l] < A[r]:                
-                lower = A[l]
+            if A[l] < A[r]:  # 让A[l]或者A[r]轮流当local的最大值              
+                lower = A[l]# 那一侧比较小就是lower
                 l += 1
             else:                
                 lower = A[r]
@@ -70,7 +74,7 @@ class Solution1:
         return res
     
 if __name__ == "__main__":
-    print(Solution().trap([0,1,0,2,1,0,1,3,2,1,2,1]))
+    print(Solution1().trap([0,1,0,2,1,0,1,3,2,1,2,1]))
     
     
     

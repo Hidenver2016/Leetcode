@@ -51,7 +51,7 @@ class Solution(object):
         nodeDict = dict()
         dummy = Node(0, None, None)
         nodeDict[head] = dummy
-        newHead, pointer = dummy, head
+        newHead, pointer = dummy, head# 这个newhead用来建立新链表，pointer是旧链表
         while pointer:#常规操作，循环链表，把普通部分存入hashtable 或者叫dict
             node = Node(pointer.val, pointer.next, None)
             nodeDict[pointer] = node
@@ -60,9 +60,9 @@ class Solution(object):
         pointer = head#指向旧的head
         while pointer:
             if pointer.random:
-                nodeDict[pointer].random = nodeDict[pointer.random]#这个是亮点，加上了random属性
+                nodeDict[pointer].random = nodeDict[pointer.random]#这个是亮点，加上了random属性。 左侧是新造的节点的random属性， 右侧是在存好的hashmap中寻找
             pointer = pointer.next
-        return dummy.next
+        return dummy.next# 这里返回 nodeDict[head]的时候要注意第一个值 nodeDict[head] = dummy， 这里不对，其他都是对的
 
 
 

@@ -43,7 +43,7 @@ class Solution:
                     res = i
         return res
     
-class Solution(object):#这个也容易理解
+class Solution(object):#看这个，先计数，然后随机选择
 
     def __init__(self, nums):
         """

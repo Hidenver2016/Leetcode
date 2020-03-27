@@ -23,14 +23,14 @@ def random_subset(iterator, K): # iterator is a stream
     N = 0
 
     for item in iterator:
-        N += 1
+        N += 1 # N就是当前数的长度
         if len( result ) < K:
             result.append( item ) #前面的都是等概率的
         else:
-            s = int(random.random() * N)#产生一个随机0～N的数
+#            s = int(random.random() * N)#产生一个随机0～N的数
             s = random.randrange(0, N)
-            if s < K:
-                result[ s ] = item#替换
+            if s < K:#以 k/i 的概率保留第i个数
+                result[ s ] = item#替换, 并以 1/k 的概率与前面已选择的k个数中的任意一个替换。
 
     return result
 

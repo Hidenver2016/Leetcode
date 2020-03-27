@@ -72,7 +72,7 @@ class Solution(object):
         return path
 
 """
-DFS时间复杂度是O(N)，空间复杂度是O(N)。超过了100%的提交。
+DFS时间复杂度是O(N^2)，空间复杂度是O(N)。
 """
 class Solution1(object):
     def findOrder(self, numCourses, prerequisites):
@@ -92,7 +92,7 @@ class Solution1(object):
                 return []
         return path
     
-    def dfs(self, graph, visited, i, path):
+    def dfs(self, graph, visited, i, path):#这里注意，path作为一个list传入，是可以保留被改变的值的，类似于&path
         if visited[i] == 1: return False
         if visited[i] == 2: return True
         visited[i] = 1

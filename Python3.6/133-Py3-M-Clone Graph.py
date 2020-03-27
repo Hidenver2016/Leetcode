@@ -63,6 +63,7 @@ class Solution(object):
         :type node: Node
         :rtype: Node
         """
+        if not node: return
 #        hashd = dict()
         node_copy = self.dfs(node, dict())
         return node_copy
@@ -84,18 +85,18 @@ BFS
 
 python代码如下：
 """
-
-class Solution(object):
-    def cloneGraph(self, node):
+import collections
+class Solution1(object):
+    def cloneGraph(self, node):# 看这个bfs比较容易理解
         """
         :type node: Node
         :rtype: Node
         """
+        if not node: return
         que = collections.deque()
         hashd = dict()
         que.append(node)
-        node_copy = Node(node.val, [])
-        hashd[node] = node_copy
+        hashd[node] = Node(node.val, [])
         while que:
             t = que.popleft()
             if not t: continue
@@ -104,4 +105,4 @@ class Solution(object):
                     hashd[n] = Node(n.val, [])
                     que.append(n)
                 hashd[t].neighbors.append(hashd[n])
-        return node_copy
+        return hashd[node]
