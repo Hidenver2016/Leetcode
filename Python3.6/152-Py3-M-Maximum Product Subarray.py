@@ -7,7 +7,7 @@ Created on Tue Feb 12 14:12:02 2019
 
 """
 Given an integer array nums, find the contiguous subarray within an array 
-(containing at least one number) which has the largest product.
+(containing at least one number) which has the largest product
 
 Example 1:
 

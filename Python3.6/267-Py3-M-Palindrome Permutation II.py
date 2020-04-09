@@ -7,7 +7,7 @@ Created on Sun Feb 24 15:45:39 2019
 
 """
 Given a string s, return all the palindromic permutations (without duplicates) of it. 
-Return an empty list if no palindromic permutation could be form.
+Return an empty list if no palindromic permutation could be form
 
 Example 1:
 

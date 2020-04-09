@@ -6,7 +6,7 @@ Created on Sun Feb 24 15:41:55 2019
 """
 
 """
-Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
+Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000
 
 Example 1:
 
@@ -19,6 +19,7 @@ Input: "cbbd"
 Output: "bb"
 https://leetcode.com/problems/longest-palindromic-substring/discuss/2954/Python-easy-to-understand-solution-with-comments-(from-middle-to-two-ends).
 算法是从中间向两边扩展
+尤其要注意奇偶数的处理，另外while循环的最后应该是s[l+1:r],因为l和r可能有一个已经不行了
 
 """
 #O(n^2)
@@ -39,3 +40,4 @@ class Solution:
             l -= 1
             r += 1
         return s[l+1:r] # O(n) 正好是之前算过的从l到r 相当于l-=1和r+=1后，两边各自缩进一位
+    
