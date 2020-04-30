@@ -31,7 +31,7 @@ class Solution(object):
         num_sum = sum(nums)
         return n * (n + 1) / 2 - num_sum
     
-    def missingNumber1(self, nums):
+    def missingNumber1(self, nums):#因为本身就少一个
         res = len(nums)#注意因为是要全部相加，所以最后这个值必须先放进去，要不是少一个missing data
 #        res = 0
         for i in range(res):

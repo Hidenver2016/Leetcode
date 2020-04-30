@@ -29,7 +29,7 @@ Then go through the numbers. If the number x is the start of a streak (i.e., x-1
 then test y = x+1, x+2, x+3, ... and stop at the first number y not in the set. 
 The length of the streak is then simply y-x and we update our global best with that. 
 Since we check each streak only once, this is overall O(n). 
-This ran in 44 ms on the OJ, one of the fastest Python submissions
+This ran in 44 ms on the OJ, one of the fastest Python submission
 """
 
 """

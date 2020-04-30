@@ -70,7 +70,7 @@ class Solution1(object):
         low = 0
         high = len(nums) - 1
         mid = (high + low) // 2
-        while high - low > 1:
+        while low + 1 < high:
             count = 0
             for k in nums:
                 if mid < k <= high:
@@ -83,8 +83,8 @@ class Solution1(object):
         return high
     
 if __name__ == "__main__":
-#    print(Solution().findDuplicate([1,3,4,2,2]))
-    print(Solution().findDuplicate([2,5,9,6,9,3,8,9,7,1]))
+    print(Solution().findDuplicate([1,3,4,2,2,5,6]))
+    # print(Solution().findDuplicate([2,5,9,6,9,3,8,9,7,1]))
     
     
     

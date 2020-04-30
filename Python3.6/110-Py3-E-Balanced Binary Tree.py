@@ -68,7 +68,7 @@ class Solution(object):#这个方法较优
 
 """
 class Solution1(object):
-    def isBalanced(self, root):
+    def isBalanced(self, root):#这个方法更加基础，好理解
         if not root: return True
         left = self.get_height(root.left)
         right = self.get_height(root.right)

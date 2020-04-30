@@ -63,7 +63,7 @@ class Solution:
 #https://leetcode.com/problems/balanced-binary-tree/discuss/157645/Python-Tree-tm  
 #这个要看一下！！！        
 class Solution1(object):
-    def maxDepth_gd(self, root):
+    def maxDepth_gd(self, root):#看这个 和110题没有区别
         '''bugfree'''
         if not root: return 0
 

@@ -5,7 +5,7 @@ Created on Thu Apr  9 00:24:06 2020
 @author: hjiang
 
 https://www.interviewcake.com/question/python3/find-duplicate-optimize-for-space?course=fc1&section=sorting-searching-logarithms
-二分法： 找出多次出现的数字
+二分法： 找出两次出现的数字，就是287题
 O(nlgn) time and O(1)O(1) space.
 """
 

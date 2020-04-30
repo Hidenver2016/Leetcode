@@ -52,16 +52,16 @@ class TreeNode(object):
 class Solution(object):
     def maxPathSum(self, root):
         self.maxSum = float("-inf")
-        self.maxPathSumRecu(root)
+        self.helper(root)
         return self.maxSum
 
-    def maxPathSumRecu(self, root):
+    def helper(self, root):
         if root is None:
             return 0
-        left = max(0, self.maxPathSumRecu(root.left))# 0放在这就是说下面子节点上的负数就不用加上来了
-        right = max(0, self.maxPathSumRecu(root.right))
-        self.maxSum = max(self.maxSum, root.val + left + right)
-        return root.val + max(left, right)
+        left = max(0, self.helper(root.left))# 0放在这就是说下面子节点上的负数就不用加上来了
+        right = max(0, self.helper(root.right))
+        self.maxSum = max(self.maxSum, root.val + left + right)# 这里返回的是self.maxSum的答案
+        return root.val + max(left, right)#这里返回的是递归函数helper的答案， 只要一条边就行了
     
     
     

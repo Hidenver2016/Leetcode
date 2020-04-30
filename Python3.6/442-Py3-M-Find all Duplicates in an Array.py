@@ -19,7 +19,7 @@ Output:
 
 class Solution(object):
     def findDuplicates(self, nums):
-        """
+        """ #强行构造hash，因为全是正数，就把遇到过的数字当成序号，把序号位置上的数字搞成负数，因为所有数字都是小于长度的
         :type nums: List[int]
         :rtype: List[int]
         """
@@ -30,3 +30,6 @@ class Solution(object):
             else:
                 nums[abs(x)-1] *= -1
         return res
+    
+nums = [4,3,2,7,8,2,3,1]
+print(Solution().findDuplicates(nums))

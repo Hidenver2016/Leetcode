@@ -106,7 +106,7 @@ l[i][j] = g[i-1][j-1] + diff
 （赚到一个昨天到今天的差价）
 3.更早之前买的
 l[i][j] = l[i-1][j] + diff
-（没有昨天卖，今天来卖，又增加一个差价），这里的原理是第二题的，122题，因为最终的profit等于多个小profit的和
+（没有昨天卖，今天来卖，又增加一个差价!!!），这里的原理是第二题的，122题，因为最终的profit等于多个小profit的和
 
 
 但其实第一种情况是不需要考虑的，因为当天买当天卖不会增加利润，完全是重复操作，
@@ -134,7 +134,7 @@ class Solution2(object):##用这个，还可以当成第四问188的解
 #                l[i][j] = max(g[i-1][j-1] + max(diff, 0), l[i-1][j] + diff)
                 l[i][j] = max(g[i - 1][j - 1], l[i - 1][j]) + diff
                 g[i][j] = max(l[i][j], g[i - 1][j])
-        return g[-1][-1],l,g
+        return g[-1][-1]
 class Solution3(object):    
     def maxProfit(self, prices):
         """

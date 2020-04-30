@@ -29,7 +29,7 @@ https://leetcode.com/problems/longest-palindrome/discuss/89614/python-simple-set
 """
 
 class Solution(object):
-    def longestPalindrome(self, s):
+    def longestPalindrome(self, s):#看看各种组合中最长的回文是什么，那么只要找出所有的单数字母的补集，加1即可
         """
         :type s: str
         :rtype: int
