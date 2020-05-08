@@ -32,7 +32,7 @@ class MinStack(object):
         initialize your data structure here.
         """
         self.stack = []
-        self.min = []
+        self.min = []# 与stack一样长，属于空间换时间的想法
         
 
     def push(self, x):

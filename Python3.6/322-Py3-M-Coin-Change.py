@@ -21,25 +21,28 @@ Input: coins = [2], amount = 3
 Output: -1
 Note:
 You may assume that you have an infinite number of each kind of coin.
+
+题意：最少需要多少个硬币
 """
 # Time:  O(n * k), n is the number of coins, k is the amount of money
 # Space: O(k)
+# DP solution. (1680ms)
 
-class Solution(object):#这个超时了，但是思路很清楚，用这个回答也可以
+class Solution(object):#这没有超时了，但是思路很清楚，用这个回答也可以
     def coinChange(self, coins, amount):
         """
         :type coins: List[int]
         :type amount: int
         :rtype: int
         """
-        INF = 0x7fffffff  # Using float("inf") would be slower.
+        INF = 0x7fffffff  # Using float("inf") would be slower. 看到这种搞最小的，先搞float("inf")
         amounts = [INF] * (amount + 1)
         amounts[0] = 0
         for i in range(amount + 1):
             if amounts[i] != INF:
                 for coin in coins:
                     if i + coin <= amount:
-                        amounts[i + coin] = min(amounts[i + coin], amounts[i] + 1)
+                        amounts[i + coin] = min(amounts[i + coin], amounts[i] + 1)#关键，表示数字i+coin可以由硬币数为amounts[i] + 1构成
         return amounts[amount] if amounts[amount] != INF else -1
     
     
@@ -60,4 +63,4 @@ class Solution1(object):
         else: return dp[amount] 
     
 if __name__ == "__main__":
-    print(Solution1().coinChange([1,2,5], 11))
+    print(Solution().coinChange([1,2,5], 11))

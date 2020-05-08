@@ -60,16 +60,30 @@ class TreeNode(object):
         self.val = x
         self.left = None
         self.right = None
+        
+class Solution0:        
+    def connect1(self, root):#看这个把，答案和117题一样    ,   还是看这个比较稳定
+        while root:
+            cur = tmp = TreeNode(0)
+            while root:
+                if root.left:
+                    cur.next = root.left# tmp.next也指向2，第二层第一个,然后就又指向第三层第一个，如果没有左子树的话，就是在下面完成的
+                    cur = root.left
+                if root.right:
+                    cur.next = root.right
+                    cur = root.right
+                root = root.next#在这里如果root没有了就相当于在末尾加上了none
+            root = tmp.next#换行
 
 class Solution:#dfs， recur
     # @param root, a tree link node
     # @return nothing
-    def connect(self, root):
+    def connect(self, root): #看这个把，突然开窍了，感觉不难懂
         if not root: return
         if root.right:
-            root.left.next = root.right
-            if root.next:#这里就是把上图的5连接到了6
-                root.right.next = root.next.left#这就是没想通的地方
+            root.left.next = root.right#这里就是把上图的5连接到了6
+            if root.next:
+                root.right.next = root.next.left#这就是没想通的地方，如果2—>3, 那么5 ->6就是 root.right.next = root.next.left
         self.connect(root.left)
         self.connect(root.right)
 
